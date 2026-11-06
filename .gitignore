@@ -35,3 +35,6 @@ _*.log
 _*.err
 __pycache__/
 *.pyc
+
+# 调试产物
+_last_detail.json

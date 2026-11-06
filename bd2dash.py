@@ -2796,6 +2796,12 @@ class H(BaseHTTPRequestHandler):
                 {'ok': True, 'msg': '已停止：%s' % _name}, ensure_ascii=False))
         if self.path == '/api/test/detail':
             try:
+                io.open(os.path.join(HERE, '_last_detail.json'), 'w',
+                        encoding='utf-8', newline='').write(
+                    json.dumps(req, ensure_ascii=False, indent=1))
+            except Exception:
+                pass
+            try:
                 res = test_detail(req)
             except Exception as _e:
                 res = {'ok': False, 'msg': '出错: %s' % _e}
