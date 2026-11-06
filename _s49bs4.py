@@ -54,7 +54,10 @@ def init():
     import _sim3 as _S
     _S.bless_points([])
     S = _S
-    BOX = json.load(io.open(os.path.join(HERE, 'my_box.json'), encoding='utf-8'))
+    try:
+        BOX = json.load(io.open(os.path.join(HERE, 'my_box.json'), encoding='utf-8'))
+    except Exception:
+        BOX = {}          # 没有个人服饰数据也能跑
     BURST = {}
     for k, v in BOX.items():
         if k == '_說明' or '·' not in k:
