@@ -890,7 +890,7 @@ td input{margin:0;padding:3px 6px;font-size:12px}
     <p class="tt">操作</p>
     <!-- 抓取已搬到云服务器自动跑，本地按钮暂时隐藏（要恢复就把 display:none 去掉） -->
     <button class="primary" onclick="run('capture',{n:1000})" style="display:none">① 全量抓取（约 4 分钟）</button>
-    <button class="act act-sync" onclick="run('sync')">
+    <button class="act act-sync" onclick="syncCloud()">
       <span class="ic">↓</span><span class="lb">同步云端数据</span>
       <span class="sub">拉最新</span></button>
     <div class="row"><input id="lo" value="2000"><input id="hi" value="2299"></div>
@@ -1086,6 +1086,41 @@ td input{margin:0;padding:3px 6px;font-size:12px}
     </div>
   </div>
 </div></div>
+
+<div class="modal-bg" id="ccmodal" style="z-index:162" onclick="if(event.target===this)closeCloudCfg()">
+  <div class="modal" style="max-width:460px">
+    <div class="mhead"><span class="mtitle">云端服务器配置</span>
+      <span class="mclose" onclick="closeCloudCfg()">✕</span></div>
+    <div class="mbody">
+      <div style="font-size:11.5px;color:#6d7888;line-height:1.6;margin-bottom:10px">
+        填一次就存到本机 cloud.json（不会上传）。走 SSH 同步，不用给服务器开端口。
+      </div>
+      <div class="row" style="align-items:center;margin-bottom:8px">
+        <span style="font-size:12px;color:#a8b3c4;width:74px">服务器</span>
+        <input id="cc_host" placeholder="例如 1.2.3.4 或 域名" style="margin:0">
+      </div>
+      <div class="row" style="align-items:center;margin-bottom:8px">
+        <span style="font-size:12px;color:#a8b3c4;width:74px">端口</span>
+        <input id="cc_port" type="number" value="22" style="width:80px;margin:0">
+        <span style="font-size:12px;color:#a8b3c4;margin-left:10px">用户</span>
+        <input id="cc_user" value="root" style="width:110px;margin:0">
+      </div>
+      <div class="row" style="align-items:center;margin-bottom:8px">
+        <span style="font-size:12px;color:#a8b3c4;width:74px">密码</span>
+        <input id="cc_pass" type="password" placeholder="SSH 密码" style="margin:0">
+      </div>
+      <div class="row" style="align-items:center;margin-bottom:8px">
+        <span style="font-size:12px;color:#a8b3c4;width:74px">远端目录</span>
+        <input id="cc_dir" value="/opt/bd2/capture" style="margin:0">
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
+        <button onclick="closeCloudCfg()" style="width:auto;padding:6px 16px;margin:0">取消</button>
+        <button class="primary" onclick="saveCloudCfg()"
+                style="width:auto;padding:6px 16px;margin:0">保存并同步</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal-bg" id="pmodal" style="z-index:130" onclick="if(event.target===this)closePicker()">
   <div class="modal" style="max-width:620px">
@@ -2320,6 +2355,43 @@ async function resetSide(which){
   render(which);
 }
 
+/* ---------- 云端配置弹窗 ---------- */
+async function cloudCfgInfo(){
+  try{ return await (await fetch('/api/cloudcfg')).json(); }catch(e){ return {ok:false}; }
+}
+async function openCloudCfg(){
+  const j = await cloudCfgInfo();
+  document.getElementById('cc_host').value = j.host || '';
+  document.getElementById('cc_port').value = j.port || 22;
+  document.getElementById('cc_user').value = j.user || 'root';
+  document.getElementById('cc_pass').value = '';
+  document.getElementById('cc_dir').value = j.remote_dir || '/opt/bd2/capture';
+  document.getElementById('cc_pass').placeholder = j.has_password ? '（已保存，留空不改）' : 'SSH 密码';
+  document.getElementById('ccmodal').classList.add('on');
+}
+function closeCloudCfg(){ document.getElementById('ccmodal').classList.remove('on'); }
+async function saveCloudCfg(){
+  const body = {
+    host: document.getElementById('cc_host').value.trim(),
+    port: +document.getElementById('cc_port').value || 22,
+    user: document.getElementById('cc_user').value.trim(),
+    password: document.getElementById('cc_pass').value,
+    remote_dir: document.getElementById('cc_dir').value.trim(),
+  };
+  const j = await (await fetch('/api/cloudcfg', {method:'POST',
+    headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})).json();
+  if(!j.ok){ alert(j.msg || '保存失败'); return; }
+  closeCloudCfg();
+  alert('已保存，开始同步…');
+  run('sync');
+}
+/* 点「同步云端数据」走这里：没配置就先弹窗 */
+async function syncCloud(){
+  const j = await cloudCfgInfo();
+  if(!j.has_config){ openCloudCfg(); return; }
+  run('sync');
+}
+
 poll(); stat();
 
 /* ★ 必须放在脚本最后（BOX/BLESS 等用 let 声明，提前调用会 TDZ 报错） */
@@ -2632,6 +2704,22 @@ class H(BaseHTTPRequestHandler):
             except Exception as _e:
                 res = {'ok': False, 'msg': str(_e)}
             return self._send(200, json.dumps(res, ensure_ascii=False))
+        if u.path == '/api/cloudcfg':
+            cfg = {}
+            try:
+                cfg = json.load(io.open(os.path.join(HERE, 'cloud.json'), encoding='utf-8'))
+            except Exception:
+                cfg = {}
+            ssh = cfg.get('ssh') or {}
+            return self._send(200, json.dumps({
+                'ok': True,
+                'host': ssh.get('host') or '',
+                'port': ssh.get('port') or 22,
+                'user': ssh.get('user') or 'root',
+                'remote_dir': ssh.get('remote_dir') or '/opt/bd2/capture',
+                'has_password': bool(ssh.get('password')),
+                'has_config': bool(ssh.get('host')),
+            }, ensure_ascii=False))
         if u.path == '/api/box':
             return self._send(200, json.dumps({'list': box_list()}, ensure_ascii=False))
         if u.path == '/api/log':
@@ -2683,6 +2771,35 @@ class H(BaseHTTPRequestHandler):
             except Exception as _e:
                 res = {'ok': False, 'msg': '测试出错: %s' % _e}
             return self._send(200, json.dumps(res, ensure_ascii=False))
+        if self.path == '/api/cloudcfg':
+            host = (req.get('host') or '').strip()
+            if not host:
+                return self._send(200, json.dumps({'ok': False, 'msg': '服务器地址不能为空'},
+                                                  ensure_ascii=False))
+            old = {}
+            try:
+                old = json.load(io.open(os.path.join(HERE, 'cloud.json'), encoding='utf-8'))
+            except Exception:
+                old = {}
+            pwd = req.get('password')
+            if pwd in (None, ''):
+                pwd = ((old.get('ssh') or {}).get('password') or '')
+            cfg = {
+                'url': '',
+                'token': '',
+                'build_pool': 1,
+                'ssh': {
+                    'host': host,
+                    'port': int(req.get('port') or 22),
+                    'user': (req.get('user') or 'root').strip(),
+                    'password': pwd,
+                    'remote_dir': (req.get('remote_dir') or '/opt/bd2/capture').strip(),
+                },
+            }
+            io.open(os.path.join(HERE, 'cloud.json'), 'w', encoding='utf-8', newline='').write(
+                json.dumps(cfg, ensure_ascii=False, indent=1))
+            return self._send(200, json.dumps({'ok': True, 'msg': '已保存云端配置'},
+                                              ensure_ascii=False))
         if self.path == '/api/save':
             if req.get('team'):
                 cfg = {'team': req['team'], 'bf': req.get('bf') or [],

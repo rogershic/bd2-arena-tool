@@ -138,7 +138,9 @@ def main():
             return 1
     else:
         if not cfg.get('url') or not cfg.get('token'):
-            print('cloud.json 里既没有 ssh 也没有 url/token')
+            print('还没有配置云端服务器。')
+            print('  做法① 控制台点「↓ 同步云端数据」→ 会弹出配置窗，填地址/账号/密码即可')
+            print('  做法② 手动创建 cloud.json，格式见 cloud/server.json.example')
             return 1
         print('用 HTTP 同步（%s）' % cfg['url'])
         try:
