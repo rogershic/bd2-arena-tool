@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
-"""从云端服务器同步数据（阵容总库 / 历史库），可选本地重建对手池
+"""从云端同步数据（阵容总库 / 历史库），并可选本地重建对手池
 
-两种方式（cloud.json 里配了 ssh 就用 SFTP，最稳；否则用 http url）：
-    SFTP: {"ssh": {"host":..., "user":..., "password":..., "remote_dir":"/opt/bd2/capture"}}
-    HTTP: {"url": "http://ip:8787", "token": "..."}
+cloud.json 支持两种写法（填一种就行）：
+
+① 数据地址（最简单，公开链接不用 token）
+   {"url": "https://你的域名/bd2/阵容总库.jsonl", "build_pool": 1}
+   {"url": "https://你的域名/bd2",              "build_pool": 1}   ← 目录也行，会找 manifest.json
+
+② SSH 服务器（走 SFTP，不用开数据端口）
+   {"ssh": {"host":"1.2.3.4","user":"root","password":"...","remote_dir":"/opt/bd2/capture"},
+    "build_pool": 1}
 
 用法:
     python _sync_cloud.py            # 同步 + 建池
@@ -47,7 +53,83 @@ def http_get(url, timeout=600):
         return r.read()
 
 
-def sync_sftp(ssh, got_files):
+def _kq(token):
+    return ('?k=' + urllib.parse.quote(token)) if token else ''
+
+
+def sync_url(cfg, got):
+    """① 数据地址模式"""
+    url = (cfg.get('url') or '').strip()
+    tok = cfg.get('token') or ''
+    if url.endswith(('.jsonl', '.json')):
+        base = url.rsplit('/', 1)[0]
+        direct = url
+    else:
+        base = url.rstrip('/')
+        direct = ''
+    # 先试 manifest（有行数校验，更稳）
+    man = None
+    try:
+        man = json.loads(http_get(base + '/manifest.json' + _kq(tok), 30).decode('utf-8'))
+        print('云端数据时间: %s' % man.get('ts'))
+        for fn, info in (man.get('files') or {}).items():
+            print('   %-18s %s 行  %.1f MB  更新 %s'
+                  % (fn, info.get('lines'), (info.get('bytes') or 0) / 1048576,
+                     info.get('mtime')))
+    except Exception:
+        man = None
+
+    targets = []
+    if man:
+        for fn in FILES:
+            if fn in (man.get('files') or {}):
+                targets.append((fn, base + '/file/' + urllib.parse.quote(fn) + _kq(tok),
+                                man['files'][fn].get('lines') or 0))
+    else:
+        # 没 manifest：直接按地址下（能给几个给几个）
+        if direct:
+            targets.append((os.path.basename(direct), direct, 0))
+            for fn in FILES:
+                if fn != os.path.basename(direct):
+                    targets.append(('' if False else fn,
+                                    base + '/' + urllib.parse.quote(fn) + _kq(tok), 0))
+        else:
+            for fn in FILES:
+                targets.append((fn, base + '/' + urllib.parse.quote(fn) + _kq(tok), 0))
+
+    for fn, u, want in targets:
+        dst = os.path.join(HERE, fn)
+        tmp = dst + '.downloading'
+        print('下载 %s …' % fn, end='', flush=True)
+        try:
+            data = http_get(u, 600)
+        except Exception:
+            # serve.py 的路径是 /file/xxx；普通静态服务器是 /xxx → 再试一次
+            alt = u.replace('/file/', '/')
+            if alt == u:
+                print(' 跳过（下载失败）')
+                continue
+            try:
+                data = http_get(alt, 600)
+            except Exception as e:
+                print(' 跳过（%s）' % str(e)[:60])
+                continue
+        io.open(tmp, 'wb').write(data)
+        lines = data.count(b'\n')
+        if want and abs(lines - want) > max(5, want * 0.01):
+            os.remove(tmp)
+            print(' 行数不符（%d vs %d），放弃' % (lines, want))
+            continue
+        if os.path.exists(dst):
+            shutil.copy(dst, dst + '.bak_sync')
+        os.replace(tmp, dst)
+        print(' %.1f MB ✔' % (len(data) / 1048576))
+        got.append(fn)
+    return man
+
+
+def sync_sftp(ssh, got):
+    """② SSH/SFTP 模式"""
     import paramiko
     rd = ssh.get('remote_dir') or '/opt/bd2/capture'
     cli = paramiko.SSHClient()
@@ -56,34 +138,28 @@ def sync_sftp(ssh, got_files):
                 password=ssh.get('password') or '', timeout=25,
                 look_for_keys=False, allow_agent=False)
     sftp = cli.open_sftp()
+    man = {}
     try:
-        man = json.loads(sftp.open(rd + '/cloud_manifest.json').read().decode('utf-8'))
-        print('云端数据时间: %s' % man.get('ts'))
-        for fn, info in (man.get('files') or {}).items():
-            print('   %-18s %s 行  %.1f MB  更新 %s'
-                  % (fn, info.get('lines'), (info.get('bytes') or 0) / 1048576,
-                     info.get('mtime')))
+        try:
+            man = json.loads(sftp.open(rd + '/cloud_manifest.json').read().decode('utf-8'))
+            print('云端数据时间: %s' % man.get('ts'))
+        except Exception:
+            man = {'files': {fn: {} for fn in FILES}}
         for fn in FILES:
-            if fn not in (man.get('files') or {}):
-                print('云端没有 %s，跳过' % fn)
-                continue
             dst = os.path.join(HERE, fn)
             tmp = dst + '.downloading'
             print('下载 %s …' % fn, end='', flush=True)
-            t0 = time.time()
-            sftp.get(rd + '/' + fn, tmp)
-            size = os.path.getsize(tmp)
-            lines = sum(1 for _ in io.open(tmp, encoding='utf-8', errors='replace'))
-            want = (man['files'][fn].get('lines') or 0)
-            if want and abs(lines - want) > max(5, want * 0.01):
-                os.remove(tmp)
-                print(' 行数不符（%d vs %d），放弃' % (lines, want))
+            try:
+                sftp.get(rd + '/' + fn, tmp)
+            except Exception as e:
+                print(' 跳过（%s）' % str(e)[:50])
                 continue
+            size = os.path.getsize(tmp)
             if os.path.exists(dst):
                 shutil.copy(dst, dst + '.bak_sync')
             os.replace(tmp, dst)
-            print(' %.1f MB ✔ (%.0fs)' % (size / 1048576, time.time() - t0))
-            got_files.append(fn)
+            print(' %.1f MB ✔' % (size / 1048576))
+            got.append(fn)
         return man
     finally:
         try:
@@ -93,65 +169,30 @@ def sync_sftp(ssh, got_files):
         cli.close()
 
 
-def sync_http(cfg, got_files):
-    base = (cfg.get('url') or '').rstrip('/')
-    tok = cfg.get('token') or ''
-    q = '?k=' + urllib.parse.quote(tok)
-    man = json.loads(http_get(base + '/manifest.json' + q, 60).decode('utf-8'))
-    print('云端数据时间: %s' % man.get('ts'))
-    for fn, info in (man.get('files') or {}).items():
-        print('   %-18s %s 行  %.1f MB  更新 %s'
-              % (fn, info.get('lines'), (info.get('bytes') or 0) / 1048576,
-                 info.get('mtime')))
-    for fn in FILES:
-        if fn not in (man.get('files') or {}):
-            continue
-        dst = os.path.join(HERE, fn)
-        tmp = dst + '.downloading'
-        print('下载 %s …' % fn, end='', flush=True)
-        data = http_get(base + '/file/' + urllib.parse.quote(fn) + q)
-        io.open(tmp, 'wb').write(data)
-        lines = data.count(b'\n')
-        want = (man['files'][fn].get('lines') or 0)
-        if want and abs(lines - want) > max(5, want * 0.01):
-            os.remove(tmp)
-            print(' 行数不符，放弃')
-            continue
-        if os.path.exists(dst):
-            shutil.copy(dst, dst + '.bak_sync')
-        os.replace(tmp, dst)
-        print(' %.1f MB ✔' % (len(data) / 1048576))
-        got_files.append(fn)
-    return man
-
-
 def main():
     cfg = load_cfg(sys.argv[1:])
     ssh = cfg.get('ssh') or {}
     got = []
-    if ssh.get('host') and ssh.get('user'):
-        print('用 SFTP 同步（%s）' % ssh['host'])
+    man = {}
+    if cfg.get('url'):
+        print('同步方式: 数据地址 %s' % cfg['url'])
+        man = sync_url(cfg, got)
+    elif ssh.get('host') and ssh.get('user'):
+        print('同步方式: SSH 服务器 %s' % ssh['host'])
         try:
             man = sync_sftp(ssh, got)
         except Exception as e:
             print('SFTP 失败: %s' % e)
             return 1
     else:
-        if not cfg.get('url') or not cfg.get('token'):
-            print('还没有配置云端服务器。')
-            print('  做法① 控制台点「↓ 同步云端数据」→ 会弹出配置窗，填地址/账号/密码即可')
-            print('  做法② 手动创建 cloud.json，格式见 cloud/server.json.example')
-            return 1
-        print('用 HTTP 同步（%s）' % cfg['url'])
-        try:
-            man = sync_http(cfg, got)
-        except Exception as e:
-            print('HTTP 失败: %s' % e)
-            return 1
+        print('还没有配置数据来源。两种做法：')
+        print('  ① 控制台点「↓ 同步云端数据」→ 弹窗里填【数据地址】或【服务器 SSH】')
+        print('  ② 手动创建 cloud.json，格式见 cloud/server.json.example')
+        return 1
 
     io.open(os.path.join(HERE, 'cloud_sync.json'), 'w', encoding='utf-8', newline='').write(
         json.dumps({'ts': time.strftime('%Y-%m-%d %H:%M:%S'),
-                    'remote_ts': man.get('ts'), 'files': len(got)},
+                    'remote_ts': (man or {}).get('ts'), 'files': len(got)},
                    ensure_ascii=False, indent=1))
     print('同步完成：%d 个文件，本地 %s' % (len(got), time.strftime('%H:%M')))
 

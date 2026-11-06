@@ -1088,31 +1088,41 @@ td input{margin:0;padding:3px 6px;font-size:12px}
 </div></div>
 
 <div class="modal-bg" id="ccmodal" style="z-index:162" onclick="if(event.target===this)closeCloudCfg()">
-  <div class="modal" style="max-width:460px">
-    <div class="mhead"><span class="mtitle">云端服务器配置</span>
+  <div class="modal" style="max-width:480px">
+    <div class="mhead"><span class="mtitle">云端数据来源</span>
       <span class="mclose" onclick="closeCloudCfg()">✕</span></div>
     <div class="mbody">
       <div style="font-size:11.5px;color:#6d7888;line-height:1.6;margin-bottom:10px">
-        填一次就存到本机 cloud.json（不会上传）。走 SSH 同步，不用给服务器开端口。
+        两种填法，任选其一：
       </div>
-      <div class="row" style="align-items:center;margin-bottom:8px">
-        <span style="font-size:12px;color:#a8b3c4;width:74px">服务器</span>
-        <input id="cc_host" placeholder="例如 1.2.3.4 或 域名" style="margin:0">
+      <div style="font-size:12px;color:#8fa6c4;margin-bottom:5px">① 数据地址（推荐，直接下载）</div>
+      <div class="row" style="align-items:center;margin-bottom:6px">
+        <input id="cc_url" placeholder="https://你的域名/bd2/阵容总库.jsonl"
+               style="margin:0">
       </div>
-      <div class="row" style="align-items:center;margin-bottom:8px">
-        <span style="font-size:12px;color:#a8b3c4;width:74px">端口</span>
-        <input id="cc_port" type="number" value="22" style="width:80px;margin:0">
-        <span style="font-size:12px;color:#a8b3c4;margin-left:10px">用户</span>
-        <input id="cc_user" value="root" style="width:110px;margin:0">
+      <div class="row" style="align-items:center;margin-bottom:12px">
+        <span style="font-size:11.5px;color:#5c6675;white-space:nowrap">口令(可选)</span>
+        <input id="cc_token" placeholder="公开地址留空" style="margin:0;width:150px">
+        <span style="font-size:11px;color:#5c6675">地址也可以填目录，会自动找 manifest.json</span>
       </div>
-      <div class="row" style="align-items:center;margin-bottom:8px">
-        <span style="font-size:12px;color:#a8b3c4;width:74px">密码</span>
-        <input id="cc_pass" type="password" placeholder="SSH 密码" style="margin:0">
+
+      <div style="font-size:12px;color:#8fa6c4;margin-bottom:5px">② 或者填服务器 SSH（走 SFTP）</div>
+      <div class="row" style="align-items:center;margin-bottom:6px">
+        <input id="cc_host" placeholder="服务器 IP / 域名" style="margin:0">
       </div>
-      <div class="row" style="align-items:center;margin-bottom:8px">
-        <span style="font-size:12px;color:#a8b3c4;width:74px">远端目录</span>
+      <div class="row" style="align-items:center;margin-bottom:6px">
+        <span style="font-size:11.5px;color:#5c6675;width:44px">端口</span>
+        <input id="cc_port" type="number" value="22" style="width:76px;margin:0">
+        <span style="font-size:11.5px;color:#5c6675;margin-left:8px">用户</span>
+        <input id="cc_user" value="root" style="width:100px;margin:0">
+        <span style="font-size:11.5px;color:#5c6675;margin-left:8px">密码</span>
+        <input id="cc_pass" type="password" placeholder="SSH 密码" style="width:120px;margin:0">
+      </div>
+      <div class="row" style="align-items:center;margin-bottom:6px">
+        <span style="font-size:11.5px;color:#5c6675;width:44px">目录</span>
         <input id="cc_dir" value="/opt/bd2/capture" style="margin:0">
       </div>
+
       <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
         <button onclick="closeCloudCfg()" style="width:auto;padding:6px 16px;margin:0">取消</button>
         <button class="primary" onclick="saveCloudCfg()"
@@ -2361,17 +2371,21 @@ async function cloudCfgInfo(){
 }
 async function openCloudCfg(){
   const j = await cloudCfgInfo();
+  document.getElementById('cc_url').value = j.url || '';
+  document.getElementById('cc_token').value = j.token || '';
   document.getElementById('cc_host').value = j.host || '';
   document.getElementById('cc_port').value = j.port || 22;
   document.getElementById('cc_user').value = j.user || 'root';
   document.getElementById('cc_pass').value = '';
-  document.getElementById('cc_dir').value = j.remote_dir || '/opt/bd2/capture';
   document.getElementById('cc_pass').placeholder = j.has_password ? '（已保存，留空不改）' : 'SSH 密码';
+  document.getElementById('cc_dir').value = j.remote_dir || '/opt/bd2/capture';
   document.getElementById('ccmodal').classList.add('on');
 }
 function closeCloudCfg(){ document.getElementById('ccmodal').classList.remove('on'); }
 async function saveCloudCfg(){
   const body = {
+    url: document.getElementById('cc_url').value.trim(),
+    token: document.getElementById('cc_token').value.trim(),
     host: document.getElementById('cc_host').value.trim(),
     port: +document.getElementById('cc_port').value || 22,
     user: document.getElementById('cc_user').value.trim(),
@@ -2382,15 +2396,15 @@ async function saveCloudCfg(){
     headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})).json();
   if(!j.ok){ alert(j.msg || '保存失败'); return; }
   closeCloudCfg();
-  alert('已保存，开始同步…');
   run('sync');
 }
-/* 点「同步云端数据」走这里：没配置就先弹窗 */
+/* 点「同步云端数据」：没配置就先弹窗 */
 async function syncCloud(){
   const j = await cloudCfgInfo();
   if(!j.has_config){ openCloudCfg(); return; }
   run('sync');
 }
+
 
 poll(); stat();
 
@@ -2713,12 +2727,14 @@ class H(BaseHTTPRequestHandler):
             ssh = cfg.get('ssh') or {}
             return self._send(200, json.dumps({
                 'ok': True,
+                'url': cfg.get('url') or '',
+                'token': cfg.get('token') or '',
                 'host': ssh.get('host') or '',
                 'port': ssh.get('port') or 22,
                 'user': ssh.get('user') or 'root',
                 'remote_dir': ssh.get('remote_dir') or '/opt/bd2/capture',
                 'has_password': bool(ssh.get('password')),
-                'has_config': bool(ssh.get('host')),
+                'has_config': bool(cfg.get('url') or ssh.get('host')),
             }, ensure_ascii=False))
         if u.path == '/api/box':
             return self._send(200, json.dumps({'list': box_list()}, ensure_ascii=False))
@@ -2772,10 +2788,12 @@ class H(BaseHTTPRequestHandler):
                 res = {'ok': False, 'msg': '测试出错: %s' % _e}
             return self._send(200, json.dumps(res, ensure_ascii=False))
         if self.path == '/api/cloudcfg':
+            url = (req.get('url') or '').strip()
             host = (req.get('host') or '').strip()
-            if not host:
-                return self._send(200, json.dumps({'ok': False, 'msg': '服务器地址不能为空'},
-                                                  ensure_ascii=False))
+            if not url and not host:
+                return self._send(200, json.dumps(
+                    {'ok': False, 'msg': '数据地址 和 服务器地址 至少填一个'},
+                    ensure_ascii=False))
             old = {}
             try:
                 old = json.load(io.open(os.path.join(HERE, 'cloud.json'), encoding='utf-8'))
@@ -2784,21 +2802,19 @@ class H(BaseHTTPRequestHandler):
             pwd = req.get('password')
             if pwd in (None, ''):
                 pwd = ((old.get('ssh') or {}).get('password') or '')
-            cfg = {
-                'url': '',
-                'token': '',
-                'build_pool': 1,
-                'ssh': {
+            cfg = {'url': url, 'token': (req.get('token') or '').strip(), 'build_pool': 1,
+                   'ssh': {}}
+            if host:
+                cfg['ssh'] = {
                     'host': host,
                     'port': int(req.get('port') or 22),
                     'user': (req.get('user') or 'root').strip(),
                     'password': pwd,
                     'remote_dir': (req.get('remote_dir') or '/opt/bd2/capture').strip(),
-                },
-            }
+                }
             io.open(os.path.join(HERE, 'cloud.json'), 'w', encoding='utf-8', newline='').write(
                 json.dumps(cfg, ensure_ascii=False, indent=1))
-            return self._send(200, json.dumps({'ok': True, 'msg': '已保存云端配置'},
+            return self._send(200, json.dumps({'ok': True, 'msg': '已保存'},
                                               ensure_ascii=False))
         if self.path == '/api/save':
             if req.get('team'):
