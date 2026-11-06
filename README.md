@@ -1,16 +1,15 @@
 # BD2 黄金竞技场 · 阵容模拟与搜索工具
 
-## 安装
+## 免安装版（推荐，不用装 Python）
+
+下载：<https://github.com/rogershic/bd2-arena-tool/releases/latest>
+
+解压后双击 **`启动控制台.bat`**，浏览器自动打开 <http://127.0.0.1:8766>
+
+## 源码运行
 
 ```bash
-pip install -r requirements.txt
-```
-
-需要 Python 3.9+
-
-## 运行
-
-```bash
+pip install -r requirements.txt     # 需要 Python 3.9+
 python bd2dash.py
 ```
 
