@@ -34,7 +34,7 @@ def sync_result_cfg(src):
         print('  已同步为 %s / _S49_LAST.json（旧名 %s 保留镜像）' % (RESULT_CFG, LEGACY_CFG))
     else:
         print('  ✘ 同步主配置失败，后续步骤已跳过')
-PY = r'D:\soft\python3.10\python.exe'
+PY = sys.executable          # 用当前解释器（便携版/别人的电脑也能跑）
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 BASE_ENV = {

@@ -17,7 +17,7 @@ from urllib.parse import urlparse, parse_qs
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-PY = r'D:\soft\python3.10\python.exe'
+PY = sys.executable          # 用当前解释器（便携版/别人的电脑也能跑）
 PORT = int(os.environ.get('BD2_PORT') or 8766)
 import bd2cfg
 import _make_html as MH
