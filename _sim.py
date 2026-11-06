@@ -92,8 +92,11 @@ def add(acc, k, v):
 
 try:
     _RANGE_T = json.load(io.open(os.path.join(HERE, 'range_table.json'), encoding='utf-8'))
-except Exception:
+except Exception as _re_:
     _RANGE_T = {}
+    import sys as _sys
+    _sys.stderr.write('[警告] 缺少 range_table.json → 所有技能范围都会退化成"只打主目标"，'
+                      '结果全错！请确认包装完整（%s）\n' % _re_)
 
 # ★★ 2026-10-22: 简→繁 自动兜底（手工别名表收不全，如 鲁→魯、赛尔→賽爾、剑后→劍後）
 #   顺序: 手工 TRAD/CHAR_TRAD → opencc s2t → 都不行才放弃
