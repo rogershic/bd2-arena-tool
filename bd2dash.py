@@ -288,6 +288,22 @@ def load_pool():
     return _POOL['data']
 
 
+
+def cloud_cfg_path():
+    """云端配置路径：环境变量 > 用户目录 > 工具目录（重装不丢）"""
+    env = os.environ.get('BD2_CLOUD_CFG')
+    if env:
+        return env
+    home = os.path.expanduser('~')
+    user_cfg = os.path.join(home, '.bd2-arena', 'cloud.json')
+    if os.path.exists(user_cfg):
+        return user_cfg
+    local = os.path.join(HERE, 'cloud.json')
+    if os.path.exists(local):
+        return local
+    return user_cfg
+
+
 def box_raw():
     """我方收藏服饰：原始名 -> (破度, 爆发)"""
     global _BOXRAW
@@ -1088,42 +1104,23 @@ td input{margin:0;padding:3px 6px;font-size:12px}
 </div></div>
 
 <div class="modal-bg" id="ccmodal" style="z-index:162" onclick="if(event.target===this)closeCloudCfg()">
-  <div class="modal" style="max-width:480px">
-    <div class="mhead"><span class="mtitle">云端数据来源</span>
+  <div class="modal" style="max-width:520px">
+    <div class="mhead"><span class="mtitle">云端数据地址</span>
       <span class="mclose" onclick="closeCloudCfg()">✕</span></div>
     <div class="mbody">
       <div style="font-size:11.5px;color:#6d7888;line-height:1.6;margin-bottom:10px">
-        两种填法，任选其一：
+        填一次就行，保存在本机（~/.bd2-arena/cloud.json），以后重新下载也不用再填。
       </div>
-      <div style="font-size:12px;color:#8fa6c4;margin-bottom:5px">① 数据地址（推荐，直接下载）</div>
-      <div class="row" style="align-items:center;margin-bottom:6px">
-        <input id="cc_url" placeholder="https://你的域名/bd2/阵容总库.jsonl"
+      <div class="row" style="align-items:center;margin-bottom:8px">
+        <input id="cc_url" placeholder="http://你的地址:端口  或  https://域名/bd2/阵容总库.jsonl"
                style="margin:0">
       </div>
-      <div class="row" style="align-items:center;margin-bottom:12px">
+      <div class="row" style="align-items:center;margin-bottom:4px">
         <span style="font-size:11.5px;color:#5c6675;white-space:nowrap">口令(可选)</span>
-        <input id="cc_token" placeholder="公开地址留空" style="margin:0;width:150px">
-        <span style="font-size:11px;color:#5c6675">地址也可以填目录，会自动找 manifest.json</span>
+        <input id="cc_token" placeholder="公开地址留空" style="margin:0;width:170px">
+        <span style="font-size:11px;color:#5c6675">填目录会自动找 manifest.json</span>
       </div>
-
-      <div style="font-size:12px;color:#8fa6c4;margin-bottom:5px">② 或者填服务器 SSH（走 SFTP）</div>
-      <div class="row" style="align-items:center;margin-bottom:6px">
-        <input id="cc_host" placeholder="服务器 IP / 域名" style="margin:0">
-      </div>
-      <div class="row" style="align-items:center;margin-bottom:6px">
-        <span style="font-size:11.5px;color:#5c6675;width:44px">端口</span>
-        <input id="cc_port" type="number" value="22" style="width:76px;margin:0">
-        <span style="font-size:11.5px;color:#5c6675;margin-left:8px">用户</span>
-        <input id="cc_user" value="root" style="width:100px;margin:0">
-        <span style="font-size:11.5px;color:#5c6675;margin-left:8px">密码</span>
-        <input id="cc_pass" type="password" placeholder="SSH 密码" style="width:120px;margin:0">
-      </div>
-      <div class="row" style="align-items:center;margin-bottom:6px">
-        <span style="font-size:11.5px;color:#5c6675;width:44px">目录</span>
-        <input id="cc_dir" value="/opt/bd2/capture" style="margin:0">
-      </div>
-
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
         <button onclick="closeCloudCfg()" style="width:auto;padding:6px 16px;margin:0">取消</button>
         <button class="primary" onclick="saveCloudCfg()"
                 style="width:auto;padding:6px 16px;margin:0">保存并同步</button>
@@ -2721,7 +2718,7 @@ class H(BaseHTTPRequestHandler):
         if u.path == '/api/cloudcfg':
             cfg = {}
             try:
-                cfg = json.load(io.open(os.path.join(HERE, 'cloud.json'), encoding='utf-8'))
+                cfg = json.load(io.open(cloud_cfg_path(), encoding='utf-8'))
             except Exception:
                 cfg = {}
             ssh = cfg.get('ssh') or {}
@@ -2796,7 +2793,7 @@ class H(BaseHTTPRequestHandler):
                     ensure_ascii=False))
             old = {}
             try:
-                old = json.load(io.open(os.path.join(HERE, 'cloud.json'), encoding='utf-8'))
+                old = json.load(io.open(cloud_cfg_path(), encoding='utf-8'))
             except Exception:
                 old = {}
             pwd = req.get('password')
@@ -2812,7 +2809,12 @@ class H(BaseHTTPRequestHandler):
                     'password': pwd,
                     'remote_dir': (req.get('remote_dir') or '/opt/bd2/capture').strip(),
                 }
-            io.open(os.path.join(HERE, 'cloud.json'), 'w', encoding='utf-8', newline='').write(
+            _cp = cloud_cfg_path()
+            try:
+                os.makedirs(os.path.dirname(_cp), exist_ok=True)
+            except Exception:
+                pass
+            io.open(_cp, 'w', encoding='utf-8', newline='').write(
                 json.dumps(cfg, ensure_ascii=False, indent=1))
             return self._send(200, json.dumps({'ok': True, 'msg': '已保存'},
                                               ensure_ascii=False))

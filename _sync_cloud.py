@@ -26,7 +26,24 @@ import urllib.request
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 HERE = os.path.dirname(os.path.abspath(__file__))
-CFG = os.path.join(HERE, 'cloud.json')
+
+
+def _cfg_path():
+    """配置优先级：环境变量 > 用户目录(%USERPROFILE%/.bd2-arena/cloud.json) > 工具目录"""
+    env = os.environ.get('BD2_CLOUD_CFG')
+    if env:
+        return env
+    home = os.path.expanduser('~')
+    user_cfg = os.path.join(home, '.bd2-arena', 'cloud.json')
+    if os.path.exists(user_cfg):
+        return user_cfg
+    local = os.path.join(HERE, 'cloud.json')
+    if os.path.exists(local):
+        return local
+    return user_cfg      # 都没有时，就写用户目录（重装不丢）
+
+
+CFG = _cfg_path()
 FILES = ('阵容总库.jsonl', '阵容历史库.jsonl', 'ranking_full_new.json')
 
 
