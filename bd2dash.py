@@ -516,8 +516,14 @@ def test_detail(payload):
         nm = str(u.get('name') or '')
         units.append({'name': _zh.t2s(nm.replace('·', '·')),
                       'pos': int(u.get('pos') or 0)})
+    mine_pos = []
+    for i, _u in enumerate(mine):
+        _p = int(_u.get('pos') or 0)
+        _p = 0 if _p < 0 else _p
+        mine_pos.append({'order': i + 1, 'name': _u.get('name'),
+                         'pos': _p, 'r': _p // 5 + 1, 'c': _p % 5 + 1})
     return {'ok': True, 'result': ('胜' if r[0] == 'A' else '负'), 'rounds': r[1],
-            'side': ('先攻' if side == 'f' else '后攻'),
+            'side': ('先攻' if side == 'f' else '后攻'), 'mine': mine_pos,
             'score': (y[3] if len(y) > 3 else 0),
             'name': (_zh.t2s(str(y[5] or '')) if len(y) > 5 else ''),
             'uid': (str(y[4] or '') if len(y) > 4 else ''),
@@ -1651,7 +1657,7 @@ function toggleB(which,p,name,cost){
 function delUnit(which,pos){
   const st=ED[which];
   st.team=st.team.filter(u=>u.pos!==pos);
-  st.team.sort((a,b)=>a.pos-b.pos).forEach((u,i)=>u.order=i+1);
+  st.team.forEach((u,i)=>u.order=i+1);
   render(which);
 }
 /* 选服饰弹框 */
@@ -1711,7 +1717,8 @@ function pickAt(raw){
   st.team.push({raw:raw, pos:pos, order:0, brk:EMIT.brk,
                 burst:bx.burst?EMIT.burst:0,
                 ch:bx.ch, co:bx.co, cost:bx.cost, attr:bx.attr, has_burst:bx.has_burst});
-  st.team.sort((a,b)=>a.pos-b.pos).forEach((u,i)=>u.order=i+1);
+  // ★ 用户要求：顺位由自己定（放人=排到最后），不再按位置重排
+  st.team.forEach((u,i)=>u.order=i+1);
   closePicker();
   render(which);
 }
@@ -1760,6 +1767,14 @@ function openStatSet(which){
   renderStatList();
   document.getElementById('smodal').classList.add('on');
 }
+function moveUnit(which, idx, dir){
+  const st=ED[which];
+  const j = idx + dir;
+  if(j < 0 || j >= st.team.length) return;
+  const t = st.team[idx]; st.team[idx] = st.team[j]; st.team[j] = t;
+  st.team.forEach((u,i)=>u.order=i+1);
+  renderStatList(); render(which);
+}
 function closeStatSet(){ document.getElementById('smodal').classList.remove('on'); }
 function renderStatList(){
   const which=ED.statWhich||'our', st=ED[which];
@@ -1769,6 +1784,11 @@ function renderStatList(){
     const info=unitInfo(u);
     const cc=CCOL[info.cost]||'#888';
     const hasB = info.has_burst || info.burst > 0;
+    const _arrow = '<span style="display:flex;gap:3px;margin-left:auto">'
+      + '<span class="qbtn" style="margin:0;padding:0 6px;font-size:11px" '
+      + 'onclick="moveUnit(\''+which+'\','+i+',-1)">↑</span>'
+      + '<span class="qbtn" style="margin:0;padding:0 6px;font-size:11px" '
+      + 'onclick="moveUnit(\''+which+'\','+i+',1)">↓</span></span>';
     return '<div class="erow" style="margin-bottom:6px">'
       +'<div class="idx">#'+u.order+'</div>'
       +'<div style="flex:1;font-size:12px;color:#c3cddb;overflow:hidden;white-space:nowrap">'
@@ -2119,6 +2139,11 @@ function renderBattle(out){
   });
   h += '<span class="schip">对手 <b style="color:#ffd166">' + (d0.score || 0) + ' 分</b>'
     + (d0.name ? (' <span style="color:#8fb6dd">' + d0.name + '</span>') : '') + '</span></div>';
+  h += '<div style="font-size:11.5px;color:#6d7888;margin-bottom:5px">我方（后端收到的站位）</div>'
+    + '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">'
+    + (d0.mine || []).map(u => '<span class="bchip2" style="cursor:default">#'
+        + u.order + ' ' + u.name + ' <span style="color:#8fb6dd">'
+        + u.r + '行' + u.c + '列</span></span>').join('') + '</div>';
   h += '<div style="font-size:11.5px;color:#6d7888;margin-bottom:5px">对手阵容</div>'
     + '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">'
     + (d0.units || []).map(u => '<span class="bchip2" style="cursor:default">#' + (u.pos + 1)
