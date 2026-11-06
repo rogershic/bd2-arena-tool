@@ -213,7 +213,10 @@ HERE=__HERE__
 sys.path.insert(0,HERE)
 import _sim3 as S
 S.bless_points([])
-BOX=json.load(io.open(os.path.join(HERE,'my_box.json'),encoding='utf-8'))
+try:
+    BOX=json.load(io.open(os.path.join(HERE,'my_box.json'),encoding='utf-8'))
+except Exception:
+    BOX={}   # 没个人数据也能复核
 BURST={}
 for k,v in BOX.items():
     if k=='_說明' or '·' not in k: continue
