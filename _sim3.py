@@ -1104,6 +1104,10 @@ def act(u, enemies, allies, rnd, is_second, bless):
     #   旧实现把最前排也打进去 → 多死单位、判错胜负
 
 
+    # ★ 2026-11-07 用户要看范围命中名单（对照实战）→ 多目标时在日志里列出来
+    if VERBOSE[0] and len(targets) > 1:
+        print('      [范围] %s 命中 %d 人: %s' % (
+            u['name'], len(targets), '、'.join(x['name'] for x in targets)))
     if os.environ.get('AOE_DEBUG') == '1':
         print('      [AOE] %s 主目标=%s(pos%s) 命中=%s' % (
             u['name'], tgt['name'], tgt.get('pos'), [x['name'] for x in targets]))
