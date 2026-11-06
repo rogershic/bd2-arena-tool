@@ -105,11 +105,35 @@ except Exception:
 _S2T_CACHE = {}
 
 
+_ZH_S2T = None
+
+
+def _zh_s2t_table():
+    """没有 opencc 时的兜底：用 _zh 的 繁→简 表反推出 简→繁 表"""
+    global _ZH_S2T
+    if _ZH_S2T is not None:
+        return _ZH_S2T
+    m = {}
+    try:
+        import _zh as _z
+        for a, b in (_z._build() or {}).items():      # a=繁 b=简
+            if a != b and b not in m:
+                m[b] = a
+    except Exception:
+        pass
+    _ZH_S2T = m
+    return m
+
+
 def _s2t(x):
-    if _CC is None or not x:
+    if not x:
         return x
     if x not in _S2T_CACHE:
-        _S2T_CACHE[x] = _CC.convert(x)
+        if _CC is not None:
+            _S2T_CACHE[x] = _CC.convert(x)
+        else:
+            _m = _zh_s2t_table()
+            _S2T_CACHE[x] = ''.join(_m.get(c, c) for c in x)
     return _S2T_CACHE[x]
 
 
