@@ -1,0 +1,26 @@
+{
+ "season": 49,
+ "season_name": "赛季49",
+ "rows": 5,
+ "cols": 5,
+ "forbidden": [
+  4,
+  6,
+  18,
+  20
+ ],
+ "max_units": 7,
+ "max_cost": 240,
+ "bless_first": 6,
+ "bless_second": 8,
+ "initial_score": 1000,
+ "death_countdown": 5,
+ "death_round_start": 5,
+ "_说明": "赛季地图/规则配置。每个赛季改这个文件即可，所有脚本和网页控制台都会读取它",
+ "notes": {
+  "pos": "pos = 行*cols + 列（0开始）；第1行=最前排，第5行=最后排",
+  "pos_minus1": "抓包里 pos=-1 表示第1行第1列(pos0)，不是未放置",
+  "forbidden_now": "本赛季禁用格 4(1行5列) / 6(2行2列) / 18(4行4列) / 20(5行1列)",
+  "old_s48_forbidden": "上赛季是 1,3,7,10,14,17,21,23 —— 本赛季已全部解禁"
+ }
+}

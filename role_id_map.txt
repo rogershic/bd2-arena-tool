@@ -1,0 +1,36 @@
+30	Layla
+31	Elpis
+35	Sacred Justia
+39	Liberta
+40	Darian
+41	Tyr
+42	Tyr
+43	Palette
+202	Yomi
+203	Yozakura
+204	Yumi
+205	Hikage
+206	Goblin Slayer
+207	Priestess
+208	High Elf Archer
+209	Sword Maiden
+210	Ikaruga
+211	Kyouka Uzen
+212	Tenka Izumo
+213	Ren Yamashiro
+630	Ingrid
+633	Cynthia
+634	Julie
+658	Nartas
+1001	Gynt
+1002	Fred
+1003	Lisianne
+1004	Remnunt
+1006	Lucrezia
+1008	Bernie
+1032	Carlson
+1033	Lydia
+1034	Rigenette
+1035	Beatrice
+1036	Maria
+1037	Arines

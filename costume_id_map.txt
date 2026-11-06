@@ -1,0 +1,18 @@
+# 游戏内 CostumeID → 角色名/服装名 映射表
+# 规则：游戏内 costume ID = modding char 编号（browndust2modding.pages.dev）去掉前导0，整数相等
+66401	Angelica	The Fallen
+66402	Angelica	Pool Party
+66403	Angelica	Neon Savior
+65102	Yuri	Whitebolt
+65103	Yuri	Comeback Idol
+67101	Granhildr	(Base)
+67102	Granhildr	(Bounty? 未确认)
+67103	Granhildr	Comeback Idol
+67104	Granhildr	Combat Medic
+701	Eclipse	The Dimesion Witch
+706	Eclipse	Nightmare Bunny
+707	Eclipse	Beach Vacation
+708	Eclipse	Dream Bride
+301	Scheherazade	The Lapis Witch
+206	Justia	Pool Party
+21201	Tenka Izumo	Ame-no-Mitori

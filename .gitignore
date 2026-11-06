@@ -1,0 +1,37 @@
+# 账号与个人数据（绝对不要提交）
+my_box.json
+batch_capture*.jsonl
+req_dump.jsonl
+live_session.json
+current_userkey.txt
+userkey_history.txt
+
+# 抓到的数据
+piggy_raw*.jsonl
+ranking*.json
+阵容*.jsonl
+阵容*.jsonl.bak_*
+_opp_*.pkl
+_opp_cache.pkl
+防守阵容_*.txt
+cloud_manifest.json
+cloud_sync.json
+logs/
+
+# 个人配置（阵容/胜率/收藏）
+_S49_*.json
+保存的阵容*.json
+*.bak_*
+
+# 云端凭证
+cloud.json
+cloud/server.json
+
+# 预览/截图/临时
+_*.html
+_*.png
+_*.js
+_*.log
+_*.err
+__pycache__/
+*.pyc

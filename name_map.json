@@ -1,0 +1,2246 @@
+{
+ "拉德尔·草药猎人": {
+  "ch": "拉德爾",
+  "co": "草藥獵人",
+  "costumeId": "Lathel_1",
+  "cost": 30
+ },
+ "Lathel·MedicinalHerbTracker": {
+  "ch": "拉德爾",
+  "co": "草藥獵人",
+  "costumeId": "Lathel_1",
+  "cost": 30
+ },
+ "拉德尔·孤独的生存者": {
+  "ch": "拉德爾",
+  "co": "孤獨的生存者",
+  "costumeId": "Lathel_2",
+  "cost": 30
+ },
+ "Lathel·LonelySurvivor": {
+  "ch": "拉德爾",
+  "co": "孤獨的生存者",
+  "costumeId": "Lathel_2",
+  "cost": 30
+ },
+ "拉德尔·霍尔蒙克斯": {
+  "ch": "拉德爾",
+  "co": "霍爾蒙克斯",
+  "costumeId": "Lathel_3",
+  "cost": 30
+ },
+ "Lathel·Homunculus": {
+  "ch": "拉德爾",
+  "co": "霍爾蒙克斯",
+  "costumeId": "Lathel_3",
+  "cost": 30
+ },
+ "拉德尔·暗黑骑士": {
+  "ch": "拉德爾",
+  "co": "暗黑騎士",
+  "costumeId": "Lathel_4",
+  "cost": 30
+ },
+ "Lathel·DarkKnight": {
+  "ch": "拉德爾",
+  "co": "暗黑騎士",
+  "costumeId": "Lathel_4",
+  "cost": 30
+ },
+ "拉德尔·复仇的誓约": {
+  "ch": "拉德爾",
+  "co": "復仇的誓約",
+  "costumeId": "Lathel_5",
+  "cost": 30
+ },
+ "Lathel·PromiseofVengance": {
+  "ch": "拉德爾",
+  "co": "復仇的誓約",
+  "costumeId": "Lathel_5",
+  "cost": 30
+ },
+ "拉德尔·泳池派对": {
+  "ch": "拉德爾",
+  "co": "泳池派對",
+  "costumeId": "Lathel_6",
+  "cost": 30
+ },
+ "Lathel·PoolParty": {
+  "ch": "拉德爾",
+  "co": "泳池派對",
+  "costumeId": "Lathel_6",
+  "cost": 30
+ },
+ "悠丝缇亚·血骑士": {
+  "ch": "悠絲緹亞",
+  "co": "血騎士",
+  "costumeId": "Justia_2",
+  "cost": 30
+ },
+ "Justia·KnightofBlood": {
+  "ch": "悠絲緹亞",
+  "co": "血騎士",
+  "costumeId": "Justia_2",
+  "cost": 30
+ },
+ "悠丝缇亚·皎洁死神": {
+  "ch": "悠絲緹亞",
+  "co": "皎潔死神",
+  "costumeId": "Justia_1",
+  "cost": 30
+ },
+ "Justia·WhiteReaper": {
+  "ch": "悠絲緹亞",
+  "co": "皎潔死神",
+  "costumeId": "Justia_1",
+  "cost": 30
+ },
+ "悠丝缇亚·血之贪食者": {
+  "ch": "悠絲緹亞",
+  "co": "血之貪食者",
+  "costumeId": "Justia_3",
+  "cost": 30
+ },
+ "Justia·BloodGlutton": {
+  "ch": "悠絲緹亞",
+  "co": "血之貪食者",
+  "costumeId": "Justia_3",
+  "cost": 30
+ },
+ "悠丝缇亚·剑道社": {
+  "ch": "悠絲緹亞",
+  "co": "劍道社",
+  "costumeId": "Justia_4",
+  "cost": 30
+ },
+ "Justia·KendoClub": {
+  "ch": "悠絲緹亞",
+  "co": "劍道社",
+  "costumeId": "Justia_4",
+  "cost": 30
+ },
+ "悠丝缇亚·泳池派对": {
+  "ch": "悠絲緹亞",
+  "co": "泳池派對",
+  "costumeId": "Justia_5",
+  "cost": 30
+ },
+ "Justia·PoolParty": {
+  "ch": "悠絲緹亞",
+  "co": "泳池派對",
+  "costumeId": "Justia_5",
+  "cost": 30
+ },
+ "Justia·HotSummerDream": {
+  "ch": "悠絲緹亞",
+  "co": "泳池派對",
+  "costumeId": "Justia_5",
+  "cost": 30
+ },
+ "莎赫拉查德·苍蓝魔女": {
+  "ch": "莎赫拉查德",
+  "co": "蒼藍魔女",
+  "costumeId": "Scheherazade_1",
+  "cost": 30
+ },
+ "Scheherazade·TheLapisWitch": {
+  "ch": "莎赫拉查德",
+  "co": "蒼藍魔女",
+  "costumeId": "Scheherazade_1",
+  "cost": 30
+ },
+ "莎赫拉查德·魔法学校教授": {
+  "ch": "莎赫拉查德",
+  "co": "魔法學校教授",
+  "costumeId": "Scheherazade_2",
+  "cost": 30
+ },
+ "Scheherazade·TheMagicSchoolProfessor": {
+  "ch": "莎赫拉查德",
+  "co": "魔法學校教授",
+  "costumeId": "Scheherazade_2",
+  "cost": 30
+ },
+ "莎赫拉查德·代号S": {
+  "ch": "莎赫拉查德",
+  "co": "代號S",
+  "costumeId": "Scheherazade_3",
+  "cost": 30
+ },
+ "Scheherazade·CodeNameS": {
+  "ch": "莎赫拉查德",
+  "co": "代號S",
+  "costumeId": "Scheherazade_3",
+  "cost": 30
+ },
+ "莎赫拉查德·泳池派对": {
+  "ch": "莎赫拉查德",
+  "co": "泳池派對",
+  "costumeId": "Scheherazade_4",
+  "cost": 35
+ },
+ "Scheherazade·PoolParty": {
+  "ch": "莎赫拉查德",
+  "co": "泳池派對",
+  "costumeId": "Scheherazade_4",
+  "cost": 35
+ },
+ "Scheherazade·DeliberateAce": {
+  "ch": "莎赫拉查德",
+  "co": "泳池派對",
+  "costumeId": "Scheherazade_4",
+  "cost": 35
+ },
+ "格雷·迷雾神射手": {
+  "ch": "格雷",
+  "co": "迷霧神射手",
+  "costumeId": "Gray_1",
+  "cost": 30
+ },
+ "Gray·TheSharpshooteroftheMist": {
+  "ch": "格雷",
+  "co": "迷霧神射手",
+  "costumeId": "Gray_1",
+  "cost": 30
+ },
+ "格雷·B级老板": {
+  "ch": "格雷",
+  "co": "B級老闆",
+  "costumeId": "Gray_2",
+  "cost": 30
+ },
+ "Gray·B-RankManager": {
+  "ch": "格雷",
+  "co": "B級老闆",
+  "costumeId": "Gray_2",
+  "cost": 30
+ },
+ "格雷·先锋大将": {
+  "ch": "格雷",
+  "co": "先鋒大將",
+  "costumeId": "Gray_3",
+  "cost": 30
+ },
+ "Gray·Vanguard": {
+  "ch": "格雷",
+  "co": "先鋒大將",
+  "costumeId": "Gray_3",
+  "cost": 30
+ },
+ "格雷·泳池派对": {
+  "ch": "格雷",
+  "co": "泳池派對",
+  "costumeId": "Gray_4",
+  "cost": 30
+ },
+ "Gray·PoolParty": {
+  "ch": "格雷",
+  "co": "泳池派對",
+  "costumeId": "Gray_4",
+  "cost": 30
+ },
+ "鲁·白色猫咪": {
+  "ch": "魯",
+  "co": "白色貓咪",
+  "costumeId": "Rou_1",
+  "cost": 30
+ },
+ "Rou·WhiteCat": {
+  "ch": "魯",
+  "co": "白色貓咪",
+  "costumeId": "Rou_1",
+  "cost": 30
+ },
+ "鲁·小红帽": {
+  "ch": "魯",
+  "co": "小紅帽",
+  "costumeId": "Rou_2",
+  "cost": 45
+ },
+ "Rou·RedHat": {
+  "ch": "魯",
+  "co": "小紅帽",
+  "costumeId": "Rou_2",
+  "cost": 45
+ },
+ "鲁·自然的脚爪": {
+  "ch": "魯",
+  "co": "自然的腳爪",
+  "costumeId": "Rou_3",
+  "cost": 40
+ },
+ "Rou·Nature'sClaw": {
+  "ch": "魯",
+  "co": "自然的腳爪",
+  "costumeId": "Rou_3",
+  "cost": 40
+ },
+ "鲁·流浪猫": {
+  "ch": "魯",
+  "co": "流浪貓",
+  "costumeId": "Rou_4",
+  "cost": 30
+ },
+ "Rou·StrayCat": {
+  "ch": "魯",
+  "co": "流浪貓",
+  "costumeId": "Rou_4",
+  "cost": 30
+ },
+ "奥尔施塔因·魔兽学家": {
+  "ch": "奧爾施塔因",
+  "co": "魔獸學家",
+  "costumeId": "Olstein_1",
+  "cost": 30
+ },
+ "Olstein·TheFiendScholar": {
+  "ch": "奧爾施塔因",
+  "co": "魔獸學家",
+  "costumeId": "Olstein_1",
+  "cost": 30
+ },
+ "奥尔施塔因·青云道士": {
+  "ch": "奧爾施塔因",
+  "co": "青雲道士",
+  "costumeId": "Olstein_2",
+  "cost": 30
+ },
+ "Olstein·SageofBlueClouds": {
+  "ch": "奧爾施塔因",
+  "co": "青雲道士",
+  "costumeId": "Olstein_2",
+  "cost": 30
+ },
+ "伊柯利普斯·空间魔女": {
+  "ch": "伊柯利普斯",
+  "co": "空間魔女",
+  "costumeId": "Eclipse_1",
+  "cost": 30
+ },
+ "Eclipse·TheDimesionWitch": {
+  "ch": "伊柯利普斯",
+  "co": "空間魔女",
+  "costumeId": "Eclipse_1",
+  "cost": 30
+ },
+ "伊柯利普斯·恶梦兔女郎": {
+  "ch": "伊柯利普斯",
+  "co": "惡夢兔女郎",
+  "costumeId": "Eclipse_2",
+  "cost": 30
+ },
+ "Eclipse·NightmareBunny": {
+  "ch": "伊柯利普斯",
+  "co": "惡夢兔女郎",
+  "costumeId": "Eclipse_2",
+  "cost": 30
+ },
+ "伊柯利普斯·海边度假": {
+  "ch": "伊柯利普斯",
+  "co": "海邊度假",
+  "costumeId": "Eclipse_3",
+  "cost": 35
+ },
+ "Eclipse·BeachVacation": {
+  "ch": "伊柯利普斯",
+  "co": "海邊度假",
+  "costumeId": "Eclipse_3",
+  "cost": 35
+ },
+ "伊柯利普斯·梦中的新娘": {
+  "ch": "伊柯利普斯",
+  "co": "夢中的新娘",
+  "costumeId": "Eclipse_4",
+  "cost": 30
+ },
+ "Eclipse·DreamBride": {
+  "ch": "伊柯利普斯",
+  "co": "夢中的新娘",
+  "costumeId": "Eclipse_4",
+  "cost": 30
+ },
+ "露比雅·沙漠之刺": {
+  "ch": "露比雅",
+  "co": "沙漠之刺",
+  "costumeId": "Rubia_1",
+  "cost": 30
+ },
+ "Rubia·ThornoftheDesert": {
+  "ch": "露比雅",
+  "co": "沙漠之刺",
+  "costumeId": "Rubia_1",
+  "cost": 30
+ },
+ "露比雅·大海女帝": {
+  "ch": "露比雅",
+  "co": "大海女帝",
+  "costumeId": "Rubia_2",
+  "cost": 30
+ },
+ "Rubia·TheEmpressoftheOcean": {
+  "ch": "露比雅",
+  "co": "大海女帝",
+  "costumeId": "Rubia_2",
+  "cost": 30
+ },
+ "露比雅·女仆代号C": {
+  "ch": "露比雅",
+  "co": "女僕代號C",
+  "costumeId": "Rubia_3",
+  "cost": 30
+ },
+ "Rubia·MaidNameC": {
+  "ch": "露比雅",
+  "co": "女僕代號C",
+  "costumeId": "Rubia_3",
+  "cost": 30
+ },
+ "露比雅·女仆比基尼": {
+  "ch": "露比雅",
+  "co": "女僕比基尼",
+  "costumeId": "Rubia_4",
+  "cost": 30
+ },
+ "Rubia·MaidBikini": {
+  "ch": "露比雅",
+  "co": "女僕比基尼",
+  "costumeId": "Rubia_4",
+  "cost": 30
+ },
+ "席比雅·沙漠之花": {
+  "ch": "席比雅",
+  "co": "沙漠之花",
+  "costumeId": "Sylvia_1",
+  "cost": 30
+ },
+ "Sylvia·DesertFlower": {
+  "ch": "席比雅",
+  "co": "沙漠之花",
+  "costumeId": "Sylvia_1",
+  "cost": 30
+ },
+ "席比雅·剑后": {
+  "ch": "席比雅",
+  "co": "劍后",
+  "costumeId": "Sylvia_2",
+  "cost": 30
+ },
+ "Sylvia·TheSwordQueen": {
+  "ch": "席比雅",
+  "co": "劍后",
+  "costumeId": "Sylvia_2",
+  "cost": 30
+ },
+ "席比雅·海军上将": {
+  "ch": "席比雅",
+  "co": "海軍上將",
+  "costumeId": "Sylvia_3",
+  "cost": 30
+ },
+ "Sylvia·Admiral": {
+  "ch": "席比雅",
+  "co": "海軍上將",
+  "costumeId": "Sylvia_3",
+  "cost": 30
+ },
+ "席比雅·比基尼特务": {
+  "ch": "席比雅",
+  "co": "比基尼特務",
+  "costumeId": "Sylvia_4",
+  "cost": 30
+ },
+ "Sylvia·BikiniAgent": {
+  "ch": "席比雅",
+  "co": "比基尼特務",
+  "costumeId": "Sylvia_4",
+  "cost": 30
+ },
+ "Sylvia·CrimsonLotus": {
+  "ch": "席比雅",
+  "co": "劍后",
+  "costumeId": "Sylvia_2",
+  "cost": 30
+ },
+ "泰瑞丝·破坏的天使": {
+  "ch": "泰瑞絲",
+  "co": "破壞的天使",
+  "costumeId": "Teresse_1",
+  "cost": 30
+ },
+ "Teresse·AngelofDestruction": {
+  "ch": "泰瑞絲",
+  "co": "破壞的天使",
+  "costumeId": "Teresse_1",
+  "cost": 30
+ },
+ "泰瑞丝·保健社": {
+  "ch": "泰瑞絲",
+  "co": "保健社",
+  "costumeId": "Teresse_2",
+  "cost": 30
+ },
+ "Teresse·MedicalClub": {
+  "ch": "泰瑞絲",
+  "co": "保健社",
+  "costumeId": "Teresse_2",
+  "cost": 30
+ },
+ "泰瑞丝·海边天使": {
+  "ch": "泰瑞絲",
+  "co": "海邊天使",
+  "costumeId": "Teresse_3",
+  "cost": 30
+ },
+ "Teresse·BeachsideAngel": {
+  "ch": "泰瑞絲",
+  "co": "海邊天使",
+  "costumeId": "Teresse_3",
+  "cost": 30
+ },
+ "Teresse·MilkyBikini": {
+  "ch": "泰瑞絲",
+  "co": "海邊天使",
+  "costumeId": "Teresse_3",
+  "cost": 30
+ },
+ "莉亚特里斯·罗戴夫之星": {
+  "ch": "莉亞特里斯",
+  "co": "羅戴夫之星",
+  "costumeId": "Liatris_1",
+  "cost": 30
+ },
+ "Liatris·Rodev'sStar": {
+  "ch": "莉亞特里斯",
+  "co": "羅戴夫之星",
+  "costumeId": "Liatris_1",
+  "cost": 30
+ },
+ "莉亚特里斯·霓虹跟踪狂": {
+  "ch": "莉亞特里斯",
+  "co": "霓虹跟蹤狂",
+  "costumeId": "Liatris_2",
+  "cost": 30
+ },
+ "Liatris·NeonStalker": {
+  "ch": "莉亞特里斯",
+  "co": "霓虹跟蹤狂",
+  "costumeId": "Liatris_2",
+  "cost": 30
+ },
+ "莉亚特里斯·女仆代号R": {
+  "ch": "莉亞特里斯",
+  "co": "女僕代號R",
+  "costumeId": "Liatris_3",
+  "cost": 30
+ },
+ "Liatris·MaidNameR": {
+  "ch": "莉亞特里斯",
+  "co": "女僕代號R",
+  "costumeId": "Liatris_3",
+  "cost": 30
+ },
+ "黛安娜·未知的探究者": {
+  "ch": "黛安娜",
+  "co": "未知的探究者",
+  "costumeId": "Diana_1",
+  "cost": 30
+ },
+ "Diana·AdventureroftheUnknown": {
+  "ch": "黛安娜",
+  "co": "未知的探究者",
+  "costumeId": "Diana_1",
+  "cost": 30
+ },
+ "黛安娜·魔法革新者": {
+  "ch": "黛安娜",
+  "co": "魔法革新者",
+  "costumeId": "Diana_3",
+  "cost": 30
+ },
+ "Diana·MagicalInnovator": {
+  "ch": "黛安娜",
+  "co": "魔法革新者",
+  "costumeId": "Diana_3",
+  "cost": 30
+ },
+ "黛安娜·反乌托邦": {
+  "ch": "黛安娜",
+  "co": "反烏托邦",
+  "costumeId": "Diana_2",
+  "cost": 30
+ },
+ "Diana·Anti-dystopia": {
+  "ch": "黛安娜",
+  "co": "反烏托邦",
+  "costumeId": "Diana_2",
+  "cost": 30
+ },
+ "蕾拉·创造的铁砧": {
+  "ch": "蕾拉",
+  "co": "創造的鐵砧",
+  "costumeId": "Layla_1",
+  "cost": 30
+ },
+ "Layla·AnvilofCreation": {
+  "ch": "蕾拉",
+  "co": "創造的鐵砧",
+  "costumeId": "Layla_1",
+  "cost": 30
+ },
+ "厄尔比斯·救赎之手": {
+  "ch": "厄爾比斯",
+  "co": "救贖之手",
+  "costumeId": "Elpis_1",
+  "cost": 30
+ },
+ "Elpis·HandofSalvation": {
+  "ch": "厄爾比斯",
+  "co": "救贖之手",
+  "costumeId": "Elpis_1",
+  "cost": 30
+ },
+ "罗安·最后希望": {
+  "ch": "羅安",
+  "co": "最後希望",
+  "costumeId": "Loen_1",
+  "cost": 30
+ },
+ "Loen·LastHope": {
+  "ch": "羅安",
+  "co": "最後希望",
+  "costumeId": "Loen_1",
+  "cost": 30
+ },
+ "罗安·田径社社员": {
+  "ch": "羅安",
+  "co": "田徑社社員",
+  "costumeId": "Loen_2",
+  "cost": 30
+ },
+ "Loen·TrackandFieldTeam": {
+  "ch": "羅安",
+  "co": "田徑社社員",
+  "costumeId": "Loen_2",
+  "cost": 30
+ },
+ "罗安·名人兔女郎": {
+  "ch": "羅安",
+  "co": "名人兔女郎",
+  "costumeId": "Loen_3",
+  "cost": 30
+ },
+ "Loen·CelebrityBunny": {
+  "ch": "羅安",
+  "co": "名人兔女郎",
+  "costumeId": "Loen_3",
+  "cost": 30
+ },
+ "内布利斯·迷宫的门卫": {
+  "ch": "內布利斯",
+  "co": "迷宮的門衛",
+  "costumeId": "Nebris_2",
+  "cost": 30
+ },
+ "Nebris·LabyrinthGatekeeper": {
+  "ch": "內布利斯",
+  "co": "迷宮的門衛",
+  "costumeId": "Nebris_2",
+  "cost": 30
+ },
+ "内布利斯·松散的救生员": {
+  "ch": "內布利斯",
+  "co": "鬆散的救生員",
+  "costumeId": "Nebris_1",
+  "cost": 30
+ },
+ "Nebris·Laid-backLifeguard": {
+  "ch": "內布利斯",
+  "co": "鬆散的救生員",
+  "costumeId": "Nebris_1",
+  "cost": 30
+ },
+ "内布利斯·新进员工": {
+  "ch": "內布利斯",
+  "co": "新進員工",
+  "costumeId": "Nebris_3",
+  "cost": 30
+ },
+ "Nebris·NewHire": {
+  "ch": "內布利斯",
+  "co": "新進員工",
+  "costumeId": "Nebris_3",
+  "cost": 30
+ },
+ "Nebris·LuckyBikini": {
+  "ch": "內布利斯",
+  "co": "鬆散的救生員",
+  "costumeId": "Nebris_1",
+  "cost": 30
+ },
+ "墨菲亚·海边度假": {
+  "ch": "墨菲亞",
+  "co": "海邊度假",
+  "costumeId": "Morpeah_1",
+  "cost": 30
+ },
+ "Morpeah·BeachVacation": {
+  "ch": "墨菲亞",
+  "co": "海邊度假",
+  "costumeId": "Morpeah_1",
+  "cost": 30
+ },
+ "墨菲亚·白日梦兔女郎": {
+  "ch": "墨菲亞",
+  "co": "白日夢兔女郎",
+  "costumeId": "Morpeah_2",
+  "cost": 30
+ },
+ "Morpeah·DaydreamBunny": {
+  "ch": "墨菲亞",
+  "co": "白日夢兔女郎",
+  "costumeId": "Morpeah_2",
+  "cost": 30
+ },
+ "墨菲亚·使者": {
+  "ch": "墨菲亞",
+  "co": "使者",
+  "costumeId": "Morpeah_3",
+  "cost": 30
+ },
+ "Morpeah·Apostle": {
+  "ch": "墨菲亞",
+  "co": "使者",
+  "costumeId": "Morpeah_3",
+  "cost": 30
+ },
+ "神圣悠丝缇亚·找回的命运": {
+  "ch": "神聖悠絲緹亞",
+  "co": "找回的命運",
+  "costumeId": "SacredJustia_1",
+  "cost": 30
+ },
+ "SacredJustia·ReclaimedDestiny": {
+  "ch": "神聖悠絲緹亞",
+  "co": "找回的命運",
+  "costumeId": "SacredJustia_1",
+  "cost": 30
+ },
+ "奥利维尔·忠实之翼": {
+  "ch": "奧利維爾",
+  "co": "忠實之翼",
+  "costumeId": "Olivier_2",
+  "cost": 30
+ },
+ "Olivier·FaithfulWings": {
+  "ch": "奧利維爾",
+  "co": "忠實之翼",
+  "costumeId": "Olivier_2",
+  "cost": 30
+ },
+ "奥利维尔·使者": {
+  "ch": "奧利維爾",
+  "co": "使者",
+  "costumeId": "Olivier_3",
+  "cost": 30
+ },
+ "Olivier·Apostle": {
+  "ch": "奧利維爾",
+  "co": "使者",
+  "costumeId": "Olivier_3",
+  "cost": 30
+ },
+ "奥利维尔·堕落之翼": {
+  "ch": "奧利維爾",
+  "co": "墮落之翼",
+  "costumeId": "Olivier_1",
+  "cost": 30
+ },
+ "Olivier·FallenWings": {
+  "ch": "奧利維爾",
+  "co": "墮落之翼",
+  "costumeId": "Olivier_1",
+  "cost": 30
+ },
+ "奥利维尔·引退的传奇": {
+  "ch": "奧利維爾",
+  "co": "引退的傳奇",
+  "costumeId": "Olivier_4",
+  "cost": 30
+ },
+ "Olivier·RetiredLegend": {
+  "ch": "奧利維爾",
+  "co": "引退的傳奇",
+  "costumeId": "Olivier_4",
+  "cost": 30
+ },
+ "布莱德·使者": {
+  "ch": "布萊德",
+  "co": "使者",
+  "costumeId": "Blade_1",
+  "cost": 50
+ },
+ "Blade·Apostle": {
+  "ch": "布萊德",
+  "co": "使者",
+  "costumeId": "Blade_1",
+  "cost": 50
+ },
+ "布莱德·温泉剑客": {
+  "ch": "布萊德",
+  "co": "溫泉劍客",
+  "costumeId": "Blade_3",
+  "cost": 30
+ },
+ "Blade·OnsenSwordfighter": {
+  "ch": "布萊德",
+  "co": "溫泉劍客",
+  "costumeId": "Blade_3",
+  "cost": 30
+ },
+ "布莱德·小公主": {
+  "ch": "布萊德",
+  "co": "小公主",
+  "costumeId": "Blade_2",
+  "cost": 35
+ },
+ "Blade·YoungLady": {
+  "ch": "布萊德",
+  "co": "小公主",
+  "costumeId": "Blade_2",
+  "cost": 35
+ },
+ "Blade·TenderDream": {
+  "ch": "布萊德",
+  "co": "小公主",
+  "costumeId": "Blade_2",
+  "cost": 35
+ },
+ "黎维塔·暗黑圣女": {
+  "ch": "黎維塔",
+  "co": "暗黑聖女",
+  "costumeId": "Liberta_2",
+  "cost": 30
+ },
+ "Liberta·DarkSaintess": {
+  "ch": "黎維塔",
+  "co": "暗黑聖女",
+  "costumeId": "Liberta_2",
+  "cost": 30
+ },
+ "黎维塔·温泉管理者": {
+  "ch": "黎維塔",
+  "co": "溫泉管理者",
+  "costumeId": "Liberta_1",
+  "cost": 30
+ },
+ "Liberta·OnsenManager": {
+  "ch": "黎維塔",
+  "co": "溫泉管理者",
+  "costumeId": "Liberta_1",
+  "cost": 30
+ },
+ "黎维塔·奇迹玫瑰": {
+  "ch": "黎維塔",
+  "co": "奇蹟玫瑰",
+  "costumeId": "Liberta_3",
+  "cost": 30
+ },
+ "Liberta·MiracleRose": {
+  "ch": "黎維塔",
+  "co": "奇蹟玫瑰",
+  "costumeId": "Liberta_3",
+  "cost": 30
+ },
+ "Liberta·Hedonist": {
+  "ch": "黎維塔",
+  "co": "溫泉管理者",
+  "costumeId": "Liberta_1",
+  "cost": 30
+ },
+ "索妮亚·潜藏的梦": {
+  "ch": "索妮亞",
+  "co": "潛藏的夢",
+  "costumeId": "Sonya_1",
+  "cost": 30
+ },
+ "Sonya·ShadowedDream": {
+  "ch": "索妮亞",
+  "co": "潛藏的夢",
+  "costumeId": "Sonya_1",
+  "cost": 30
+ },
+ "索妮亚·卖南瓜的少女": {
+  "ch": "索妮亞",
+  "co": "賣南瓜的少女",
+  "costumeId": "Sonya_2",
+  "cost": 30
+ },
+ "Sonya·LittlePumpkinGirl": {
+  "ch": "索妮亞",
+  "co": "賣南瓜的少女",
+  "costumeId": "Sonya_2",
+  "cost": 30
+ },
+ "达丽安·启示之梦": {
+  "ch": "達麗安",
+  "co": "啟示之夢",
+  "costumeId": "Darian_1",
+  "cost": 30
+ },
+ "Darian·PropheticDream": {
+  "ch": "達麗安",
+  "co": "啟示之夢",
+  "costumeId": "Darian_1",
+  "cost": 30
+ },
+ "达丽安·苦甜兔女郎": {
+  "ch": "達麗安",
+  "co": "苦甜兔女郎",
+  "costumeId": "Darian_2",
+  "cost": 30
+ },
+ "Darian·BittersweetBunny": {
+  "ch": "達麗安",
+  "co": "苦甜兔女郎",
+  "costumeId": "Darian_2",
+  "cost": 30
+ },
+ "Darian·HeraldofEnlightenment": {
+  "ch": "達麗安",
+  "co": "啟示之夢",
+  "costumeId": "Darian_1",
+  "cost": 30
+ },
+ "提尔·星光守护者": {
+  "ch": "提爾",
+  "co": "星光守護者",
+  "costumeId": "Tyr_1",
+  "cost": 35
+ },
+ "Tyr·StarlightGuardian": {
+  "ch": "提爾",
+  "co": "星光守護者",
+  "costumeId": "Tyr_1",
+  "cost": 35
+ },
+ "提尔·软萌兔女郎": {
+  "ch": "提爾",
+  "co": "軟萌兔女郎",
+  "costumeId": "Tyr_2",
+  "cost": 30
+ },
+ "Tyr·InnocentBunny": {
+  "ch": "提爾",
+  "co": "軟萌兔女郎",
+  "costumeId": "Tyr_2",
+  "cost": 30
+ },
+ "Tyr·ClumsyWuff": {
+  "ch": "提爾",
+  "co": "軟萌兔女郎",
+  "costumeId": "Tyr_2",
+  "cost": 30
+ },
+ "帕莱特·恐惧之梦": {
+  "ch": "帕萊特",
+  "co": "恐懼之夢",
+  "costumeId": "Palette_1",
+  "cost": 30
+ },
+ "Palette·ShatteredDream": {
+  "ch": "帕萊特",
+  "co": "恐懼之夢",
+  "costumeId": "Palette_1",
+  "cost": 30
+ },
+ "帕莱特·奇迹紫罗兰": {
+  "ch": "帕萊特",
+  "co": "奇蹟紫羅蘭",
+  "costumeId": "Palette_2",
+  "cost": 30
+ },
+ "Palette·MiracleViolet": {
+  "ch": "帕萊特",
+  "co": "奇蹟紫羅蘭",
+  "costumeId": "Palette_2",
+  "cost": 30
+ },
+ "涅肯达莉亚·致命之眼": {
+  "ch": "涅肯達莉亞",
+  "co": "致命之眼",
+  "costumeId": "Nekyndalia_1",
+  "cost": 40
+ },
+ "Nekyndalia·Deadeye": {
+  "ch": "涅肯達莉亞",
+  "co": "致命之眼",
+  "costumeId": "Nekyndalia_1",
+  "cost": 40
+ },
+ "涅肯达莉亚·残破木乃伊": {
+  "ch": "涅肯達莉亞",
+  "co": "殘破木乃伊",
+  "costumeId": "Nekyndalia_2",
+  "cost": 40
+ },
+ "Nekyndalia·UnravelingMummy": {
+  "ch": "涅肯達莉亞",
+  "co": "殘破木乃伊",
+  "costumeId": "Nekyndalia_2",
+  "cost": 40
+ },
+ "艾莉丝·受祝福的冒险家": {
+  "ch": "艾莉絲",
+  "co": "受祝福的冒險家",
+  "costumeId": "Eris_1",
+  "cost": 30
+ },
+ "Eris·EsteemedAdventurer": {
+  "ch": "艾莉絲",
+  "co": "受祝福的冒險家",
+  "costumeId": "Eris_1",
+  "cost": 30
+ },
+ "艾莉丝·只属于你的猫咪": {
+  "ch": "艾莉絲",
+  "co": "只屬於你的貓咪",
+  "costumeId": "Eris_2",
+  "cost": 30
+ },
+ "Eris·YourVeryOwnCat": {
+  "ch": "艾莉絲",
+  "co": "只屬於你的貓咪",
+  "costumeId": "Eris_2",
+  "cost": 30
+ },
+ "洛琪希·受尊敬的师傅": {
+  "ch": "洛琪希",
+  "co": "受尊敬的師傅",
+  "costumeId": "Roxy_1",
+  "cost": 30
+ },
+ "Roxy·RespectedMaster": {
+  "ch": "洛琪希",
+  "co": "受尊敬的師傅",
+  "costumeId": "Roxy_1",
+  "cost": 30
+ },
+ "洛琪希·泄露的欲望": {
+  "ch": "洛琪希",
+  "co": "洩露的慾望",
+  "costumeId": "Roxy_2",
+  "cost": 30
+ },
+ "Roxy·EmergingDesire": {
+  "ch": "洛琪希",
+  "co": "洩露的慾望",
+  "costumeId": "Roxy_2",
+  "cost": 30
+ },
+ "咏·温和的破坏者": {
+  "ch": "詠",
+  "co": "溫和的破壞者",
+  "costumeId": "Yomi_1",
+  "cost": 30
+ },
+ "Yomi·GentleDestroyer": {
+  "ch": "詠",
+  "co": "溫和的破壞者",
+  "costumeId": "Yomi_1",
+  "cost": 30
+ },
+ "夜樱·信念之拳": {
+  "ch": "夜櫻",
+  "co": "信念之拳",
+  "costumeId": "Yozakura_1",
+  "cost": 30
+ },
+ "Yozakura·FistofConviction": {
+  "ch": "夜櫻",
+  "co": "信念之拳",
+  "costumeId": "Yozakura_1",
+  "cost": 30
+ },
+ "雪泉·雪花之舞": {
+  "ch": "雪泉",
+  "co": "雪花之舞",
+  "costumeId": "Yumi_1",
+  "cost": 30
+ },
+ "Yumi·DancingSnowflake": {
+  "ch": "雪泉",
+  "co": "雪花之舞",
+  "costumeId": "Yumi_1",
+  "cost": 30
+ },
+ "日影·和蔼的无情": {
+  "ch": "日影",
+  "co": "和藹的無情",
+  "costumeId": "Hikage_1",
+  "cost": 30
+ },
+ "Hikage·KindRuthlessness": {
+  "ch": "日影",
+  "co": "和藹的無情",
+  "costumeId": "Hikage_1",
+  "cost": 30
+ },
+ "哥布林杀手·小鬼杀手": {
+  "ch": "哥布林殺手",
+  "co": "小鬼殺手",
+  "costumeId": "GoblinSlayer_1",
+  "cost": 30
+ },
+ "GoblinSlayer·Orcbolg": {
+  "ch": "哥布林殺手",
+  "co": "小鬼殺手",
+  "costumeId": "GoblinSlayer_1",
+  "cost": 30
+ },
+ "女神官·地母神的祭司": {
+  "ch": "女神官",
+  "co": "地母神的祭司",
+  "costumeId": "Priestess_1",
+  "cost": 30
+ },
+ "Priestess·EarthMotherBeliever": {
+  "ch": "女神官",
+  "co": "地母神的祭司",
+  "costumeId": "Priestess_1",
+  "cost": 30
+ },
+ "妖精弓手·星风之女": {
+  "ch": "妖精弓手",
+  "co": "星風之女",
+  "costumeId": "HighElfArcher_1",
+  "cost": 30
+ },
+ "HighElfArcher·DaughterofStarwind": {
+  "ch": "妖精弓手",
+  "co": "星風之女",
+  "costumeId": "HighElfArcher_1",
+  "cost": 30
+ },
+ "剑之圣女·至高神的大主教": {
+  "ch": "劍之聖女",
+  "co": "至高神的大主教",
+  "costumeId": "SwordMaiden_1",
+  "cost": 30
+ },
+ "SwordMaiden·SupremeGodArchbishop": {
+  "ch": "劍之聖女",
+  "co": "至高神的大主教",
+  "costumeId": "SwordMaiden_1",
+  "cost": 30
+ },
+ "斑鸠·清廉之焰": {
+  "ch": "斑鳩",
+  "co": "清廉之焰",
+  "costumeId": "Ikaruga_1",
+  "cost": 30
+ },
+ "Ikaruga·NobleFlame": {
+  "ch": "斑鳩",
+  "co": "清廉之焰",
+  "costumeId": "Ikaruga_1",
+  "cost": 30
+ },
+ "羽前京香·无穷之锁": {
+  "ch": "羽前京香",
+  "co": "無窮之鎖",
+  "costumeId": "KyoukaUzen_1",
+  "cost": 30
+ },
+ "KyoukaUzen·EternalChains": {
+  "ch": "羽前京香",
+  "co": "無窮之鎖",
+  "costumeId": "KyoukaUzen_1",
+  "cost": 30
+ },
+ "出云天花·天御鸟命": {
+  "ch": "出雲天花",
+  "co": "天御鳥命",
+  "costumeId": "TenkaIzumo_1",
+  "cost": 30
+ },
+ "TenkaIzumo·Ame-no-Mitori": {
+  "ch": "出雲天花",
+  "co": "天御鳥命",
+  "costumeId": "TenkaIzumo_1",
+  "cost": 30
+ },
+ "TenkaIzumo·SpecialDate": {
+  "ch": "出雲天花",
+  "co": "天御鳥命",
+  "costumeId": "TenkaIzumo_1",
+  "cost": 30
+ },
+ "山城恋·无限宇宙之全一": {
+  "ch": "山城戀",
+  "co": "無限宇宙之全一",
+  "costumeId": "RenYamashiro_1",
+  "cost": 35
+ },
+ "RenYamashiro·LordoftheCosmos": {
+  "ch": "山城戀",
+  "co": "無限宇宙之全一",
+  "costumeId": "RenYamashiro_1",
+  "cost": 35
+ },
+ "RenYamashiro·RoleReversal": {
+  "ch": "山城戀",
+  "co": "無限宇宙之全一",
+  "costumeId": "RenYamashiro_1",
+  "cost": 35
+ },
+ "艾瑞克·毁灭之星": {
+  "ch": "艾瑞克",
+  "co": "毀滅之星",
+  "costumeId": "Alec_1",
+  "cost": 30
+ },
+ "Alec·TheDestruction": {
+  "ch": "艾瑞克",
+  "co": "毀滅之星",
+  "costumeId": "Alec_1",
+  "cost": 30
+ },
+ "艾瑞克·剑之毁灭者": {
+  "ch": "艾瑞克",
+  "co": "劍之毀滅者",
+  "costumeId": "Alec_2",
+  "cost": 30
+ },
+ "Alec·SwordBreaker": {
+  "ch": "艾瑞克",
+  "co": "劍之毀滅者",
+  "costumeId": "Alec_2",
+  "cost": 30
+ },
+ "西利亚·诅咒之星": {
+  "ch": "西利亞",
+  "co": "詛咒之星",
+  "costumeId": "Celia_1",
+  "cost": 30
+ },
+ "Celia·TheCurse": {
+  "ch": "西利亞",
+  "co": "詛咒之星",
+  "costumeId": "Celia_1",
+  "cost": 30
+ },
+ "西利亚·大魔女的后裔": {
+  "ch": "西利亞",
+  "co": "大魔女的後裔",
+  "costumeId": "Celia_2",
+  "cost": 30
+ },
+ "Celia·DescendantoftheGreatWitch": {
+  "ch": "西利亞",
+  "co": "大魔女的後裔",
+  "costumeId": "Celia_2",
+  "cost": 30
+ },
+ "西利亚·化装舞会兔女郎": {
+  "ch": "西利亞",
+  "co": "化裝舞會兔女郎",
+  "costumeId": "Celia_3",
+  "cost": 30
+ },
+ "Celia·MasqueradeBunny": {
+  "ch": "西利亞",
+  "co": "化裝舞會兔女郎",
+  "costumeId": "Celia_3",
+  "cost": 30
+ },
+ "安娜塔西亚·和蔼的女仆": {
+  "ch": "安娜塔西亞",
+  "co": "和藹的女僕",
+  "costumeId": "Anastasia_1",
+  "cost": 30
+ },
+ "Anastasia·GentleMaid": {
+  "ch": "安娜塔西亞",
+  "co": "和藹的女僕",
+  "costumeId": "Anastasia_1",
+  "cost": 30
+ },
+ "安娜塔西亚·火之涂鸦": {
+  "ch": "安娜塔西亞",
+  "co": "火之塗鴉",
+  "costumeId": "Anastasia_2",
+  "cost": 30
+ },
+ "Anastasia·FireGraffiti": {
+  "ch": "安娜塔西亞",
+  "co": "火之塗鴉",
+  "costumeId": "Anastasia_2",
+  "cost": 30
+ },
+ "莱克莉斯·杀人娃娃": {
+  "ch": "萊克莉斯",
+  "co": "殺人娃娃",
+  "costumeId": "Lecliss_1",
+  "cost": 50
+ },
+ "Lecliss·KillerDoll": {
+  "ch": "萊克莉斯",
+  "co": "殺人娃娃",
+  "costumeId": "Lecliss_1",
+  "cost": 50
+ },
+ "莱克莉斯·安卓女王": {
+  "ch": "萊克莉斯",
+  "co": "安卓女王",
+  "costumeId": "Lecliss_2",
+  "cost": 50
+ },
+ "Lecliss·AndroidQueen": {
+  "ch": "萊克莉斯",
+  "co": "安卓女王",
+  "costumeId": "Lecliss_2",
+  "cost": 50
+ },
+ "拉菲娜·钢铁引擎": {
+  "ch": "拉菲娜",
+  "co": "鋼鐵引擎",
+  "costumeId": "Rafina_1",
+  "cost": 30
+ },
+ "Rafina·SteelEngine": {
+  "ch": "拉菲娜",
+  "co": "鋼鐵引擎",
+  "costumeId": "Rafina_1",
+  "cost": 30
+ },
+ "拉菲娜·代号A": {
+  "ch": "拉菲娜",
+  "co": "代號A",
+  "costumeId": "Rafina_2",
+  "cost": 30
+ },
+ "Rafina·CodeNameA": {
+  "ch": "拉菲娜",
+  "co": "代號A",
+  "costumeId": "Rafina_2",
+  "cost": 30
+ },
+ "拉菲娜·游戏社": {
+  "ch": "拉菲娜",
+  "co": "遊戲社",
+  "costumeId": "Rafina_3",
+  "cost": 30
+ },
+ "Rafina·GameClub": {
+  "ch": "拉菲娜",
+  "co": "遊戲社",
+  "costumeId": "Rafina_3",
+  "cost": 30
+ },
+ "爱丽洁·可爱的小姐": {
+  "ch": "愛麗潔",
+  "co": "可愛的小姐",
+  "costumeId": "Elise_1",
+  "cost": 30
+ },
+ "Elise·LovelyLady": {
+  "ch": "愛麗潔",
+  "co": "可愛的小姐",
+  "costumeId": "Elise_1",
+  "cost": 30
+ },
+ "爱丽洁·代号O": {
+  "ch": "愛麗潔",
+  "co": "代號O",
+  "costumeId": "Elise_2",
+  "cost": 30
+ },
+ "Elise·CodeNameO": {
+  "ch": "愛麗潔",
+  "co": "代號O",
+  "costumeId": "Elise_2",
+  "cost": 30
+ },
+ "爱丽洁·天真的小姐": {
+  "ch": "愛麗潔",
+  "co": "天真的小姐",
+  "costumeId": "Elise_3",
+  "cost": 30
+ },
+ "Elise·NaiveLady": {
+  "ch": "愛麗潔",
+  "co": "天真的小姐",
+  "costumeId": "Elise_3",
+  "cost": 30
+ },
+ "赛尔·恶魔之女": {
+  "ch": "賽爾",
+  "co": "惡魔之女",
+  "costumeId": "Seir_1",
+  "cost": 40
+ },
+ "赛尔·B级偶像": {
+  "ch": "賽爾",
+  "co": "B級偶像",
+  "costumeId": "Seir_2",
+  "cost": 30
+ },
+ "赛尔·新进员工": {
+  "ch": "賽爾",
+  "co": "新進員工",
+  "costumeId": "Seir_3",
+  "cost": 30
+ },
+ "海伦娜·顶尖偶像": {
+  "ch": "海倫娜",
+  "co": "頂尖偶像",
+  "costumeId": "Helena_1",
+  "cost": 30
+ },
+ "Helena·TopIdol": {
+  "ch": "海倫娜",
+  "co": "頂尖偶像",
+  "costumeId": "Helena_1",
+  "cost": 30
+ },
+ "海伦娜·B级偶像": {
+  "ch": "海倫娜",
+  "co": "B級偶像",
+  "costumeId": "Helena_2",
+  "cost": 30
+ },
+ "Helena·B-RankIdol": {
+  "ch": "海倫娜",
+  "co": "B級偶像",
+  "costumeId": "Helena_2",
+  "cost": 30
+ },
+ "海伦娜·客栈暖阳": {
+  "ch": "海倫娜",
+  "co": "客棧暖陽",
+  "costumeId": "Helena_3",
+  "cost": 30
+ },
+ "Helena·SunnyInnHand": {
+  "ch": "海倫娜",
+  "co": "客棧暖陽",
+  "costumeId": "Helena_3",
+  "cost": 30
+ },
+ "Helena·RisingStar": {
+  "ch": "海倫娜",
+  "co": "B級偶像",
+  "costumeId": "Helena_2",
+  "cost": 30
+ },
+ "艾尼尔·贯穿的魔弓": {
+  "ch": "艾尼爾",
+  "co": "貫穿的魔弓",
+  "costumeId": "Eleaneer_1",
+  "cost": 50
+ },
+ "Eleaneer·PiercingMagicBow": {
+  "ch": "艾尼爾",
+  "co": "貫穿的魔弓",
+  "costumeId": "Eleaneer_1",
+  "cost": 50
+ },
+ "艾尼尔·B级偶像": {
+  "ch": "艾尼爾",
+  "co": "B級偶像",
+  "costumeId": "Eleaneer_2",
+  "cost": 30
+ },
+ "Eleaneer·B-RankIdol": {
+  "ch": "艾尼爾",
+  "co": "B級偶像",
+  "costumeId": "Eleaneer_2",
+  "cost": 30
+ },
+ "艾尼尔·酷魅兔女郎": {
+  "ch": "艾尼爾",
+  "co": "酷魅兔女郎",
+  "costumeId": "Eleaneer_3",
+  "cost": 30
+ },
+ "Eleaneer·ShadowBunny": {
+  "ch": "艾尼爾",
+  "co": "酷魅兔女郎",
+  "costumeId": "Eleaneer_3",
+  "cost": 30
+ },
+ "达非·明月": {
+  "ch": "達非",
+  "co": "明月",
+  "costumeId": "Dalvi_1",
+  "cost": 30
+ },
+ "Dalvi·BrightMoon": {
+  "ch": "達非",
+  "co": "明月",
+  "costumeId": "Dalvi_1",
+  "cost": 30
+ },
+ "达非·暑假": {
+  "ch": "達非",
+  "co": "暑假",
+  "costumeId": "Dalvi_2",
+  "cost": 30
+ },
+ "Dalvi·SummerVacation": {
+  "ch": "達非",
+  "co": "暑假",
+  "costumeId": "Dalvi_2",
+  "cost": 30
+ },
+ "达非·诡计恋人": {
+  "ch": "達非",
+  "co": "詭計戀人",
+  "costumeId": "Dalvi_3",
+  "cost": 30
+ },
+ "Dalvi·TrickyLover": {
+  "ch": "達非",
+  "co": "詭計戀人",
+  "costumeId": "Dalvi_3",
+  "cost": 30
+ },
+ "Dalvi·ButterflyDream": {
+  "ch": "達非",
+  "co": "明月",
+  "costumeId": "Dalvi_1",
+  "cost": 30
+ },
+ "杰尼斯·罗宾汉": {
+  "ch": "傑尼斯",
+  "co": "羅賓漢",
+  "costumeId": "Zenith_1",
+  "cost": 30
+ },
+ "Zenith·RobinHood": {
+  "ch": "傑尼斯",
+  "co": "羅賓漢",
+  "costumeId": "Zenith_1",
+  "cost": 30
+ },
+ "杰尼斯·水上守护者": {
+  "ch": "傑尼斯",
+  "co": "水上守護者",
+  "costumeId": "Zenith_2",
+  "cost": 30
+ },
+ "Zenith·PoolsideGuardian": {
+  "ch": "傑尼斯",
+  "co": "水上守護者",
+  "costumeId": "Zenith_2",
+  "cost": 30
+ },
+ "Zenith·StrangerBunny": {
+  "ch": "傑尼斯",
+  "co": "羅賓漢",
+  "costumeId": "Zenith_1",
+  "cost": 30
+ },
+ "安德鲁·忠诚耿直的管家": {
+  "ch": "安德魯",
+  "co": "忠誠耿直的管家",
+  "costumeId": "Andrew_1",
+  "cost": 30
+ },
+ "Andrew·LoyalButler": {
+  "ch": "安德魯",
+  "co": "忠誠耿直的管家",
+  "costumeId": "Andrew_1",
+  "cost": 30
+ },
+ "安德鲁·专家": {
+  "ch": "安德魯",
+  "co": "專家",
+  "costumeId": "Andrew_2",
+  "cost": 30
+ },
+ "Andrew·Specialist": {
+  "ch": "安德魯",
+  "co": "專家",
+  "costumeId": "Andrew_2",
+  "cost": 30
+ },
+ "英格利得·卡迪斯的子弹": {
+  "ch": "英格利得",
+  "co": "卡迪斯的子彈",
+  "costumeId": "Ingrid_1",
+  "cost": 30
+ },
+ "Ingrid·Kardis'Bullet": {
+  "ch": "英格利得",
+  "co": "卡迪斯的子彈",
+  "costumeId": "Ingrid_1",
+  "cost": 30
+ },
+ "辛西亚·酷寒中的热气": {
+  "ch": "辛西亞",
+  "co": "酷寒中的熱氣",
+  "costumeId": "Cynthia_1",
+  "cost": 30
+ },
+ "Cynthia·WarmthwithintheSevereCold": {
+  "ch": "辛西亞",
+  "co": "酷寒中的熱氣",
+  "costumeId": "Cynthia_1",
+  "cost": 30
+ },
+ "茱莉·恢复师": {
+  "ch": "茱莉",
+  "co": "恢復師",
+  "costumeId": "Julie_1",
+  "cost": 30
+ },
+ "Julie·Healer": {
+  "ch": "茱莉",
+  "co": "恢復師",
+  "costumeId": "Julie_1",
+  "cost": 30
+ },
+ "尤里·白雷": {
+  "ch": "尤里",
+  "co": "白雷",
+  "costumeId": "Yuri_1",
+  "cost": 30
+ },
+ "Yuri·Whitebolt": {
+  "ch": "尤里",
+  "co": "白雷",
+  "costumeId": "Yuri_1",
+  "cost": 30
+ },
+ "尤里·回归偶像": {
+  "ch": "尤里",
+  "co": "回歸偶像",
+  "costumeId": "Yuri_2",
+  "cost": 30
+ },
+ "Yuri·ComebackIdol": {
+  "ch": "尤里",
+  "co": "回歸偶像",
+  "costumeId": "Yuri_2",
+  "cost": 30
+ },
+ "Yuri·ForeverMascot": {
+  "ch": "尤里",
+  "co": "回歸偶像",
+  "costumeId": "Yuri_2",
+  "cost": 30
+ },
+ "纳罗达斯·无名道士": {
+  "ch": "納羅達斯",
+  "co": "無名道士",
+  "costumeId": "Nartas_1",
+  "cost": 30
+ },
+ "Nartas·AnonymousSage": {
+  "ch": "納羅達斯",
+  "co": "無名道士",
+  "costumeId": "Nartas_1",
+  "cost": 30
+ },
+ "安洁莉卡·堕落之星": {
+  "ch": "安潔莉卡",
+  "co": "墮落之星",
+  "costumeId": "Angelica_1",
+  "cost": 30
+ },
+ "Angelica·TheFallen": {
+  "ch": "安潔莉卡",
+  "co": "墮落之星",
+  "costumeId": "Angelica_1",
+  "cost": 30
+ },
+ "安洁莉卡·泳池派对": {
+  "ch": "安潔莉卡",
+  "co": "泳池派對",
+  "costumeId": "Angelica_2",
+  "cost": 40
+ },
+ "Angelica·PoolParty": {
+  "ch": "安潔莉卡",
+  "co": "泳池派對",
+  "costumeId": "Angelica_2",
+  "cost": 40
+ },
+ "安洁莉卡·霓虹救星": {
+  "ch": "安潔莉卡",
+  "co": "霓虹救星",
+  "costumeId": "Angelica_3",
+  "cost": 30
+ },
+ "Angelica·NeonSavior": {
+  "ch": "安潔莉卡",
+  "co": "霓虹救星",
+  "costumeId": "Angelica_3",
+  "cost": 30
+ },
+ "芮彼泰雅·贪婪之星": {
+  "ch": "芮彼泰雅",
+  "co": "貪婪之星",
+  "costumeId": "Refithea_1",
+  "cost": 30
+ },
+ "Refithea·TheGluttonous": {
+  "ch": "芮彼泰雅",
+  "co": "貪婪之星",
+  "costumeId": "Refithea_1",
+  "cost": 30
+ },
+ "芮彼泰雅·纯白的祝福": {
+  "ch": "芮彼泰雅",
+  "co": "純白的祝福",
+  "costumeId": "Refithea_2",
+  "cost": 30
+ },
+ "Refithea·PureWhiteBlessing": {
+  "ch": "芮彼泰雅",
+  "co": "純白的祝福",
+  "costumeId": "Refithea_2",
+  "cost": 30
+ },
+ "芮彼泰雅·水上精灵": {
+  "ch": "芮彼泰雅",
+  "co": "水上精靈",
+  "costumeId": "Refithea_3",
+  "cost": 30
+ },
+ "Refithea·PoolsideFairy": {
+  "ch": "芮彼泰雅",
+  "co": "水上精靈",
+  "costumeId": "Refithea_3",
+  "cost": 30
+ },
+ "克蕾西亚·爱丽丝": {
+  "ch": "克蕾西亞",
+  "co": "愛麗絲",
+  "costumeId": "Glacia_1",
+  "cost": 30
+ },
+ "Glacia·Alice": {
+  "ch": "克蕾西亞",
+  "co": "愛麗絲",
+  "costumeId": "Glacia_1",
+  "cost": 30
+ },
+ "克蕾西亚·纠察队": {
+  "ch": "克蕾西亞",
+  "co": "糾察隊",
+  "costumeId": "Glacia_2",
+  "cost": 30
+ },
+ "Glacia·DisciplinaryCommittee": {
+  "ch": "克蕾西亞",
+  "co": "糾察隊",
+  "costumeId": "Glacia_2",
+  "cost": 30
+ },
+ "克蕾西亚·天守继承者": {
+  "ch": "克蕾西亞",
+  "co": "天守繼承者",
+  "costumeId": "Glacia_3",
+  "cost": 30
+ },
+ "Glacia·HeavenlyGuardianSuccessor": {
+  "ch": "克蕾西亞",
+  "co": "天守繼承者",
+  "costumeId": "Glacia_3",
+  "cost": 30
+ },
+ "班塔纳·白雪公主": {
+  "ch": "班塔納",
+  "co": "白雪公主",
+  "costumeId": "Ventana_1",
+  "cost": 30
+ },
+ "Ventana·SnowWhite": {
+  "ch": "班塔納",
+  "co": "白雪公主",
+  "costumeId": "Ventana_1",
+  "cost": 30
+ },
+ "班塔纳·回归偶像": {
+  "ch": "班塔納",
+  "co": "回歸偶像",
+  "costumeId": "Ventana_2",
+  "cost": 50
+ },
+ "Ventana·ComebackIdol": {
+  "ch": "班塔納",
+  "co": "回歸偶像",
+  "costumeId": "Ventana_2",
+  "cost": 50
+ },
+ "班塔纳·温泉修行者": {
+  "ch": "班塔納",
+  "co": "溫泉修行者",
+  "costumeId": "Ventana_3",
+  "cost": 30
+ },
+ "Ventana·OnsenPractitioner": {
+  "ch": "班塔納",
+  "co": "溫泉修行者",
+  "costumeId": "Ventana_3",
+  "cost": 30
+ },
+ "葛兰西特·虚无之星": {
+  "ch": "葛蘭西特",
+  "co": "虛無之星",
+  "costumeId": "Granhildr_1",
+  "cost": 45
+ },
+ "Granhildr·TheVoid": {
+  "ch": "葛蘭西特",
+  "co": "虛無之星",
+  "costumeId": "Granhildr_1",
+  "cost": 45
+ },
+ "葛兰西特·回归偶像": {
+  "ch": "葛蘭西特",
+  "co": "回歸偶像",
+  "costumeId": "Granhildr_2",
+  "cost": 45
+ },
+ "Granhildr·ComebackIdol": {
+  "ch": "葛蘭西特",
+  "co": "惡作劇幽靈",
+  "costumeId": "Granhildr_3",
+  "cost": 45
+ },
+ "葛兰西特·恶作剧幽灵": {
+  "ch": "葛蘭西特",
+  "co": "惡作劇幽靈",
+  "costumeId": "Granhildr_3",
+  "cost": 45
+ },
+ "葛兰西特·战地医护兵": {
+  "ch": "葛蘭西特",
+  "co": "戰地醫護兵",
+  "costumeId": "Granhildr_4",
+  "cost": 30
+ },
+ "Granhildr·CombatMedic": {
+  "ch": "葛蘭西特",
+  "co": "戰地醫護兵",
+  "costumeId": "Granhildr_4",
+  "cost": 30
+ },
+ "贝那卡·DJ": {
+  "ch": "貝那卡",
+  "co": "DJ",
+  "costumeId": "Venaka_1",
+  "cost": 30
+ },
+ "Venaka·DJ": {
+  "ch": "貝那卡",
+  "co": "DJ",
+  "costumeId": "Venaka_1",
+  "cost": 30
+ },
+ "贝那卡·风之舞姬": {
+  "ch": "貝那卡",
+  "co": "風之舞姬",
+  "costumeId": "Venaka_2",
+  "cost": 30
+ },
+ "Venaka·WindDancer": {
+  "ch": "貝那卡",
+  "co": "風之舞姬",
+  "costumeId": "Venaka_2",
+  "cost": 30
+ },
+ "莱维亚·田径社社长": {
+  "ch": "萊維亞",
+  "co": "田徑社社長",
+  "costumeId": "Levia_1",
+  "cost": 30
+ },
+ "Levia·TrackandFieldCaptain": {
+  "ch": "萊維亞",
+  "co": "田徑社社長",
+  "costumeId": "Levia_1",
+  "cost": 30
+ },
+ "莱维亚·忌妒之夜": {
+  "ch": "萊維亞",
+  "co": "忌妒之夜",
+  "costumeId": "Levia_2",
+  "cost": 30
+ },
+ "Levia·NightofJealousy": {
+  "ch": "萊維亞",
+  "co": "忌妒之夜",
+  "costumeId": "Levia_2",
+  "cost": 30
+ },
+ "莱维亚·过热": {
+  "ch": "萊維亞",
+  "co": "過熱",
+  "costumeId": "Levia_3",
+  "cost": 30
+ },
+ "Levia·OverHeat": {
+  "ch": "萊維亞",
+  "co": "過熱",
+  "costumeId": "Levia_3",
+  "cost": 30
+ },
+ "米卡埃拉·海边正义": {
+  "ch": "米卡埃拉",
+  "co": "海邊正義",
+  "costumeId": "Michaela_1",
+  "cost": 30
+ },
+ "Michaela·BeachsideJustice": {
+  "ch": "米卡埃拉",
+  "co": "海邊正義",
+  "costumeId": "Michaela_1",
+  "cost": 30
+ },
+ "米卡埃拉·签名女王": {
+  "ch": "米卡埃拉",
+  "co": "簽名女王",
+  "costumeId": "Michaela_2",
+  "cost": 30
+ },
+ "Michaela·QueenofSignatures": {
+  "ch": "米卡埃拉",
+  "co": "簽名女王",
+  "costumeId": "Michaela_2",
+  "cost": 30
+ },
+ "米卡埃拉·神圣者": {
+  "ch": "米卡埃拉",
+  "co": "神聖者",
+  "costumeId": "Michaela_3",
+  "cost": 30
+ },
+ "Michaela·ActingArchbishop": {
+  "ch": "米卡埃拉",
+  "co": "神聖者",
+  "costumeId": "Michaela_3",
+  "cost": 30
+ },
+ "Michaela·TrueLiberation": {
+  "ch": "米卡埃拉",
+  "co": "海邊正義",
+  "costumeId": "Michaela_1",
+  "cost": 30
+ },
+ "卢班希亚·印鉴掠夺者": {
+  "ch": "盧班希亞",
+  "co": "印鑑掠奪者",
+  "costumeId": "Luvencia_1",
+  "cost": 30
+ },
+ "Luvencia·DealSnatcher": {
+  "ch": "盧班希亞",
+  "co": "印鑑掠奪者",
+  "costumeId": "Luvencia_1",
+  "cost": 30
+ },
+ "卢班希亚·野犬": {
+  "ch": "盧班希亞",
+  "co": "野犬",
+  "costumeId": "Luvencia_2",
+  "cost": 30
+ },
+ "Luvencia·WildDog": {
+  "ch": "盧班希亞",
+  "co": "野犬",
+  "costumeId": "Luvencia_2",
+  "cost": 30
+ },
+ "卢班希亚·海洋先锋": {
+  "ch": "盧班希亞",
+  "co": "海洋先鋒",
+  "costumeId": "Luvencia_3",
+  "cost": 30
+ },
+ "Luvencia·OceanVanguard": {
+  "ch": "盧班希亞",
+  "co": "海洋先鋒",
+  "costumeId": "Luvencia_3",
+  "cost": 30
+ },
+ "威廉明娜·钢铁君主": {
+  "ch": "威廉明娜",
+  "co": "鋼鐵君主",
+  "costumeId": "Wilhelmina_1",
+  "cost": 30
+ },
+ "Wilhelmina·IronMonarch": {
+  "ch": "威廉明娜",
+  "co": "鋼鐵君主",
+  "costumeId": "Wilhelmina_1",
+  "cost": 30
+ },
+ "威廉明娜·水上乐园女王": {
+  "ch": "威廉明娜",
+  "co": "水上樂園女王",
+  "costumeId": "Wilhelmina_2",
+  "cost": 30
+ },
+ "Wilhelmina·WaterParkQueen": {
+  "ch": "威廉明娜",
+  "co": "水上樂園女王",
+  "costumeId": "Wilhelmina_2",
+  "cost": 30
+ },
+ "威廉明娜·冰雪女王": {
+  "ch": "威廉明娜",
+  "co": "冰雪女王",
+  "costumeId": "Wilhelmina_3",
+  "cost": 30
+ },
+ "Wilhelmina·FrozenQueen": {
+  "ch": "威廉明娜",
+  "co": "冰雪女王",
+  "costumeId": "Wilhelmina_3",
+  "cost": 30
+ },
+ "葛拉娜德·净化巫女": {
+  "ch": "葛拉娜德",
+  "co": "淨化巫女",
+  "costumeId": "Granadair_2",
+  "cost": 30
+ },
+ "Granadair·ShrineMaidenofPurification": {
+  "ch": "葛拉娜德",
+  "co": "淨化巫女",
+  "costumeId": "Granadair_2",
+  "cost": 30
+ },
+ "葛拉娜德·葛洛堤女王": {
+  "ch": "葛拉娜德",
+  "co": "葛洛堤女王",
+  "costumeId": "Granadair_1",
+  "cost": 30
+ },
+ "Granadair·QueenofGluttis": {
+  "ch": "葛拉娜德",
+  "co": "葛洛堤女王",
+  "costumeId": "Granadair_1",
+  "cost": 30
+ },
+ "马莫尼勒·死亡之夜": {
+  "ch": "馬莫尼勒",
+  "co": "死亡之夜",
+  "costumeId": "Mamonir_1",
+  "cost": 45
+ },
+ "Mamonir·NightofDeath": {
+  "ch": "馬莫尼勒",
+  "co": "死亡之夜",
+  "costumeId": "Mamonir_1",
+  "cost": 45
+ },
+ "马莫尼勒·奇迹海洋": {
+  "ch": "馬莫尼勒",
+  "co": "奇蹟海洋",
+  "costumeId": "Mamonir_2",
+  "cost": 30
+ },
+ "Mamonir·MiracleMarine": {
+  "ch": "馬莫尼勒",
+  "co": "奇蹟海洋",
+  "costumeId": "Mamonir_2",
+  "cost": 30
+ },
+ "阿奇拉·战场猛兽": {
+  "ch": "阿奇拉",
+  "co": "戰場猛獸",
+  "costumeId": "Aquila_1",
+  "cost": 30
+ },
+ "Aquila·SavageWarrior": {
+  "ch": "阿奇拉",
+  "co": "戰場猛獸",
+  "costumeId": "Aquila_1",
+  "cost": 30
+ },
+ "Aquila·SealedDesires": {
+  "ch": "阿奇拉",
+  "co": "封印的欲望",
+  "costumeId": "Aquila_2",
+  "cost": 30
+ },
+ "Gynt·LupoHunter": {
+  "ch": "君特",
+  "co": "盧戈獵人",
+  "costumeId": "Gynt_1",
+  "cost": 30
+ },
+ "Fred·LugoDefenseForce": {
+  "ch": "弗雷德",
+  "co": "盧戈守衛隊",
+  "costumeId": "Fred_1",
+  "cost": 30
+ },
+ "Lisianne·WanderingPriest": {
+  "ch": "莉西安",
+  "co": "流浪神職人員",
+  "costumeId": "Lisianne_1",
+  "cost": 30
+ },
+ "Remnunt·CombatDoctor": {
+  "ch": "雷南特",
+  "co": "戰鬥醫師",
+  "costumeId": "Remnunt_1",
+  "cost": 30
+ },
+ "Wiggle·BombFanatic": {
+  "ch": "威格",
+  "co": "炸彈狂",
+  "costumeId": "Wiggle_1",
+  "cost": 30
+ },
+ "Wiggle·BombintheHoodie": {
+  "ch": "威格",
+  "co": "帽T下的炸彈",
+  "costumeId": "Wiggle_2",
+  "cost": 30
+ },
+ "Lucrezia·SeductiveWings": {
+  "ch": "盧克雷齊亞",
+  "co": "誘惑的翅膀",
+  "costumeId": "Lucrezia_1",
+  "cost": 30
+ },
+ "Bernie·RighteousRaiderGirl": {
+  "ch": "維爾尼",
+  "co": "義賊少女",
+  "costumeId": "Bernie_1",
+  "cost": 30
+ },
+ "Seir·Demon'sDaughter": {
+  "ch": "賽爾",
+  "co": "惡魔之女",
+  "costumeId": "Seir_1",
+  "cost": 40
+ },
+ "Seir·B-RankIdol": {
+  "ch": "賽爾",
+  "co": "B級偶像",
+  "costumeId": "Seir_2",
+  "cost": 30
+ },
+ "Seir·NewHire": {
+  "ch": "賽爾",
+  "co": "新進員工",
+  "costumeId": "Seir_3",
+  "cost": 30
+ },
+ "Jayden·BeautifulGirlDevotee": {
+  "ch": "傑登",
+  "co": "美少女信奉者",
+  "costumeId": "Jayden_1",
+  "cost": 30
+ },
+ "Jayden·MangaResearchClub": {
+  "ch": "傑登",
+  "co": "漫畫研究社",
+  "costumeId": "Jayden_2",
+  "cost": 30
+ },
+ "Emma·HaggardDelinquent": {
+  "ch": "艾瑪",
+  "co": "難伺候的問題學生",
+  "costumeId": "Emma_1",
+  "cost": 30
+ },
+ "Emma·SchoolQueen": {
+  "ch": "艾瑪",
+  "co": "學校女王",
+  "costumeId": "Emma_2",
+  "cost": 30
+ },
+ "Samay·KindLiberator": {
+  "ch": "莎美",
+  "co": "溫柔的解放者",
+  "costumeId": "Samay_1",
+  "cost": 30
+ },
+ "Samay·KindStudent": {
+  "ch": "莎美",
+  "co": "和藹的學生",
+  "costumeId": "Samay_2",
+  "cost": 30
+ },
+ "Kry·LiberatedMarauder": {
+  "ch": "克萊",
+  "co": "解放的掠奪者",
+  "costumeId": "Kry_1",
+  "cost": 30
+ },
+ "Kry·ViolentStudent": {
+  "ch": "克萊",
+  "co": "粗暴的學生",
+  "costumeId": "Kry_2",
+  "cost": 30
+ },
+ "Carlson·TheMercenaryKnight": {
+  "ch": "卡森",
+  "co": "傭兵騎士",
+  "costumeId": "Carlson_1",
+  "cost": 30
+ },
+ "Lydia·ApprenticeSpearman": {
+  "ch": "黎迪雅",
+  "co": "實習槍兵",
+  "costumeId": "Lydia_1",
+  "cost": 30
+ },
+ "Rigenette·LittleHunter": {
+  "ch": "莉茲內",
+  "co": "小獵人",
+  "costumeId": "Rigenette_1",
+  "cost": 30
+ },
+ "Beatrice·TheMightyWarrioroftheTribe": {
+  "ch": "比阿特麗絲",
+  "co": "部族的大戰士",
+  "costumeId": "Beatrice_1",
+  "cost": 30
+ },
+ "Maria·Archmage": {
+  "ch": "瑪麗亞",
+  "co": "大魔法師",
+  "costumeId": "Maria_1",
+  "cost": 30
+ },
+ "Arines·PriestofVitality": {
+  "ch": "阿里內斯",
+  "co": "活力的祭司",
+  "costumeId": "Arines_1",
+  "cost": 30
+ },
+ "斐杰·背叛之夜": {
+  "ch": "斐傑",
+  "co": "背叛之夜",
+  "costumeId": "Valze_1",
+  "cost": 30
+ },
+ "斐傑·背叛之夜": {
+  "ch": "斐傑",
+  "co": "背叛之夜",
+  "costumeId": "Valze_1",
+  "cost": 30
+ },
+ "Valze·背叛之夜": {
+  "ch": "斐傑",
+  "co": "背叛之夜",
+  "costumeId": "Valze_1",
+  "cost": 30
+ },
+ "Valze_背叛之夜": {
+  "ch": "斐傑",
+  "co": "背叛之夜",
+  "costumeId": "Valze_1",
+  "cost": 30
+ }
+}

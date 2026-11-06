@@ -1,0 +1,206 @@
+char000101	Lathel	Medicinal Herb Tracker
+char000102	Lathel	Lonely Survivor
+char000103	Lathel	Homunculus
+char000104	Lathel	Dark Knight
+char000105	Lathel	Promise of Vengance
+char000106	Lathel	Pool Party
+char000201	Justia	Knight of Blood
+char000202	Justia	White Reaper
+char000203	Justia	Blood Glutton
+char000204	Justia	Kendo Club
+char000206	Justia	Pool Party
+char000296	Justia	Hot Summer Dream
+char000301	Scheherazade	The Lapis Witch
+char000303	Scheherazade	The Magic School Professor
+char000304	Scheherazade	Code Name S
+char000306	Scheherazade	Pool Party
+char000396	Scheherazade	Deliberate Ace
+char000401	Gray	The Sharpshooter of the Mist
+char000402	Gray	B-Rank Manager
+char000403	Gray	Vanguard
+char000406	Gray	Pool Party
+char000501	Rou	White Cat
+char000502	Rou	Red Hat
+char000504	Rou	Nature's Claw
+char000506	Rou	Stray Cat
+char000601	Olstein	The Fiend Scholar
+char000604	Olstein	Sage of Blue Clouds
+char000701	Eclipse	The Dimesion Witch
+char000706	Eclipse	Nightmare Bunny
+char000707	Eclipse	Beach Vacation
+char000708	Eclipse	Dream Bride
+char000801	Rubia	Thorn of the Desert
+char000804	Rubia	The Empress of the Ocean
+char000806	Rubia	Maid Name C
+char000807	Rubia	Maid Bikini
+char001001	Sylvia	Desert Flower
+char001002	Sylvia	The Sword Queen
+char001004	Sylvia	Admiral
+char001006	Sylvia	Bikini Agent
+char001092	Sylvia	Crimson Lotus
+char001101	Teresse	Angel of Destruction
+char001106	Teresse	Medical Club
+char001107	Teresse	Beachside Angel
+char001197	Teresse	Milky Bikini
+char001201	Liatris	Rodev's Star
+char001206	Liatris	Neon Stalker
+char001207	Liatris	Maid Name R
+char002401	Diana	Adventurer of the Unknown
+char002403	Diana	Magical Innovator
+char002406	Diana	Anti-dystopia
+char003001	Layla	Anvil of Creation
+char003101	Elpis	Hand of Salvation
+char003201	Loen	Last Hope
+char003202	Loen	Track and Field Team
+char003203	Loen	Celebrity Bunny
+char003301	Nebris	Labyrinth Gatekeeper
+char003302	Nebris	Laid-back Lifeguard
+char003303	Nebris	New Hire
+char003392	Nebris	Lucky Bikini
+char003401	Morpeah	Beach Vacation
+char003402	Morpeah	Daydream Bunny
+char003403	Morpeah	Apostle
+char003501	Sacred Justia	Reclaimed Destiny
+char003601	Olivier	Faithful Wings
+char003602	Olivier	Apostle
+char003603	Olivier	Fallen Wings
+char003604	Olivier	Retired Legend
+char003701	Blade	Apostle
+char003702	Blade	Onsen Swordfighter
+char003703	Blade	Young Lady
+char003793	Blade	Tender Dream
+char003801	Liberta	Dark Saintess
+char003802	Liberta	Onsen Manager
+char003803	Liberta	Miracle Rose
+char003892	Liberta	Hedonist
+char003901	Sonya	Shadowed Dream
+char003902	Sonya	Little Pumpkin Girl
+char004001	Darian	Prophetic Dream
+char004002	Darian	Bittersweet Bunny
+char004091	Darian	Herald of Enlightenment
+char004101	Tyr	Starlight Guardian
+char004102	Tyr	Innocent Bunny
+char004192	Tyr	Clumsy Wuff
+char004201	Palette	Shattered Dream
+char004202	Palette	Miracle Violet
+char004301	Nekyndalia	Deadeye
+char004302	Nekyndalia	Unraveling Mummy
+char020001	Eris	Esteemed Adventurer
+char020002	Eris	Your Very Own Cat
+char020101	Roxy	Respected Master
+char020102	Roxy	Emerging Desire
+char020201	Yomi	Gentle Destroyer
+char020301	Yozakura	Fist of Conviction
+char020401	Yumi	Dancing Snowflake
+char020501	Hikage	Kind Ruthlessness
+char020601	Goblin Slayer	Orcbolg
+char020701	Priestess	Earth Mother Believer
+char020801	High Elf Archer	Daughter of Starwind
+char020901	Sword Maiden	Supreme God Archbishop
+char021001	Ikaruga	Noble Flame
+char021101	Kyouka Uzen	Eternal Chains
+char021201	Tenka Izumo	Ame-no-Mitori
+char021291	Tenka Izumo	Special Date
+char021301	Ren Yamashiro	Lord of the Cosmos
+char021391	Ren Yamashiro	Role Reversal
+char060301	Alec	The Destruction
+char060302	Alec	Sword Breaker
+char060401	Celia	The Curse
+char060402	Celia	Descendant of the Great Witch
+char060403	Celia	Masquerade Bunny
+char060501	Anastasia	Gentle Maid
+char060502	Anastasia	Fire Graffiti
+char060601	Lecliss	Killer Doll
+char060602	Lecliss	Android Queen
+char060701	Rafina	Steel Engine
+char060702	Rafina	Code Name A
+char060706	Rafina	Game Club
+char060801	Elise	Lovely Lady
+char060802	Elise	Code Name O
+char060804	Elise	Naive Lady
+char061001	Helena	Top Idol
+char061002	Helena	B-Rank Idol
+char061003	Helena	Sunny Inn Hand
+char061092	Helena	Rising Star
+char061101	Eleaneer	Piercing Magic Bow
+char061102	Eleaneer	B-Rank Idol
+char061103	Eleaneer	Shadow Bunny
+char061302	Dalvi	Bright Moon
+char061305	Dalvi	Summer Vacation
+char061306	Dalvi	Tricky Lover
+char061392	Dalvi	Butterfly Dream
+char061402	Zenith	Robin Hood
+char061404	Zenith	Poolside Guardian
+char061492	Zenith	Stranger Bunny
+char062001	Andrew	Loyal Butler
+char062002	Andrew	Specialist
+char063001	Ingrid	Kardis' Bullet
+char063301	Cynthia	Warmth within the Severe Cold
+char063401	Julie	Healer
+char065102	Yuri	Whitebolt
+char065103	Yuri	Comeback Idol
+char065193	Yuri	Forever Mascot
+char065802	Nartas	Anonymous Sage
+char066401	Angelica	The Fallen
+char066402	Angelica	Pool Party
+char066403	Angelica	Neon Savior
+char066801	Refithea	The Gluttonous
+char066802	Refithea	Pure White Blessing
+char066803	Refithea	Poolside Fairy
+char066902	Glacia	Alice
+char066906	Glacia	Disciplinary Committee
+char066907	Glacia	Heavenly Guardian Successor
+char067002	Ventana	Snow White
+char067003	Ventana	Comeback Idol
+char067004	Ventana	Onsen Practitioner
+char067101	Granhildr	The Void
+char067102	Granhildr	Comeback Idol
+char067103	Granhildr	Comeback Idol
+char067104	Granhildr	Combat Medic
+char067201	Venaka	DJ
+char067202	Venaka	Wind Dancer
+char067301	Levia	Track and Field Captain
+char067302	Levia	Night of Jealousy
+char067303	Levia	OverHeat
+char067401	Michaela	Beachside Justice
+char067402	Michaela	Queen of Signatures
+char067403	Michaela	Acting Archbishop
+char067491	Michaela	True Liberation
+char067502	Luvencia	Deal Snatcher
+char067503	Luvencia	Wild Dog
+char067504	Luvencia	Ocean Vanguard
+char067601	Wilhelmina	Iron Monarch
+char067603	Wilhelmina	Water Park Queen
+char067604	Wilhelmina	Frozen Queen
+char067701	Granadair	Shrine Maiden of Purification
+char067702	Granadair	Queen of Gluttis
+char067801	Mamonir	Night of Death
+char067803	Mamonir	Miracle Marine
+char067901	Aquila	Savage Warrior
+char067902	Aquila	Sealed Desires
+char100101	Gynt	Lupo Hunter
+char100201	Fred	Lugo Defense Force
+char100301	Lisianne	Wandering Priest
+char100401	Remnunt	Combat Doctor
+char100501	Wiggle	Bomb Fanatic
+char100502	Wiggle	Bomb in the Hoodie
+char100601	Lucrezia	Seductive Wings
+char100801	Bernie	Righteous Raider Girl
+char101101	Seir	Demon's Daughter
+char101102	Seir	B-Rank Idol
+char101103	Seir	New Hire
+char101201	Jayden	Beautiful Girl Devotee
+char101202	Jayden	Manga Research Club
+char101301	Emma	Haggard Delinquent
+char101302	Emma	School Queen
+char101401	Samay	Kind Liberator
+char101402	Samay	Kind Student
+char101501	Kry	Liberated Marauder
+char101502	Kry	Violent Student
+char101601	Celia	The Curse
+char103201	Carlson	The Mercenary Knight
+char103301	Lydia	Apprentice Spearman
+char103401	Rigenette	Little Hunter
+char103501	Beatrice	The Mighty Warrior of the Tribe
+char103601	Maria	Archmage
+char103701	Arines	Priest of Vitality

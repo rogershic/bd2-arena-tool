@@ -1,0 +1,9 @@
+{
+ "host": "你的服务器IP",
+ "port": 22,
+ "user": "root",
+ "password": "SSH密码或用密钥",
+ "remote_dir": "/opt/bd2/capture",
+ "data_port": 8787,
+ "token": "自己设一个口令"
+}
