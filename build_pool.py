@@ -86,14 +86,17 @@ else:
     FORB = {int(x) for x in (_cfg.rules().get('forbidden') or [4, 6, 18, 20])}
 USABLE = [p for p in range(25) if p not in FORB]
 
-# ---------- 当前排行榜：uid -> 分数 ----------
-rk = json.load(io.open(os.path.join(HERE, 'ranking_full_new.json'), encoding='utf-8'))
+# ---------- 当前排行榜：uid -> 分数（没有就用记录里的分数） ----------
 CUR = {}
-for r in rk:
-    u = str(r.get('uid') or '')
-    if u:
-        CUR[u] = r.get('score') or 0
-print('当前榜 %d 人' % len(CUR))
+try:
+    rk = json.load(io.open(os.path.join(HERE, 'ranking_full_new.json'), encoding='utf-8'))
+    for r in rk:
+        u = str(r.get('uid') or '')
+        if u:
+            CUR[u] = r.get('score') or 0
+    print('当前榜 %d 人' % len(CUR))
+except Exception:
+    print('没有 ranking_full_new.json → 用各条记录自己的分数（同步营地数据时会自动下载）')
 
 # ---------- 历史库：每个 uid 取最新一条 ----------
 # ★★★ 2026-11-05 新增: 新赛季规则变了（S49: 7人/240费/禁用格4,6,18,20）

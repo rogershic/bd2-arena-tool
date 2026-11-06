@@ -59,7 +59,7 @@ echo "⑦ 写清单" | tee -a "$LOG"
 import io, json, os, time
 H = os.environ.get('BD2_DIR', '/opt/bd2/capture')
 files = {}
-for fn in ('阵容总库.jsonl', '阵容历史库.jsonl'):
+for fn in ('阵容总库.jsonl', '阵容历史库.jsonl', 'ranking_full_new.json'):
     p = os.path.join(H, fn)
     if os.path.exists(p):
         st = os.stat(p)

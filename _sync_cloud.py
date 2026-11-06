@@ -27,7 +27,7 @@ import urllib.request
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 HERE = os.path.dirname(os.path.abspath(__file__))
 CFG = os.path.join(HERE, 'cloud.json')
-FILES = ('阵容总库.jsonl', '阵容历史库.jsonl')
+FILES = ('阵容总库.jsonl', '阵容历史库.jsonl', 'ranking_full_new.json')
 
 
 def load_cfg(argv):

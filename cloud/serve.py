@@ -21,7 +21,7 @@ from urllib.parse import urlparse, parse_qs, unquote
 DIR = os.environ.get('BD2_DIR', '/opt/bd2/capture')
 TOKEN = os.environ.get('BD2_TOKEN', '')
 PORT = int(os.environ.get('BD2_PORT', '8787'))
-ALLOW = {'阵容总库.jsonl', '阵容历史库.jsonl', 'cloud_manifest.json', 'my_box.json'}
+ALLOW = {'阵容总库.jsonl', '阵容历史库.jsonl', 'cloud_manifest.json', 'my_box.json', 'ranking_full_new.json'}
 
 if not TOKEN:
     print('必须设置 BD2_TOKEN 环境变量（本地工具用它拉数据）')
