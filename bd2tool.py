@@ -10,6 +10,7 @@
 """
 import argparse
 import io
+import shutil
 import json
 import os
 import subprocess
@@ -18,7 +19,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 # ★ 2026-11-07: 主配置文件改名（旧的 _S49_2000.json 是历史命名，容易误解）
 RESULT_CFG = '_S49_RESULT.json'
-LEGACY_CFG = RESULT_CFG
+LEGACY_CFG = '_S49_2000.json'    # 旧名，兼容老命令
 
 
 def sync_result_cfg(src):
@@ -28,7 +29,11 @@ def sync_result_cfg(src):
             shutil.copy(src, os.path.join(HERE, dst))
         except Exception as e:
             print('  同步 %s 失败: %s' % (dst, e))
-    print('  已同步为 %s / _S49_LAST.json（旧名 %s 保留镜像）' % (RESULT_CFG, LEGACY_CFG))
+    ok = os.path.exists(os.path.join(HERE, RESULT_CFG))
+    if ok:
+        print('  已同步为 %s / _S49_LAST.json（旧名 %s 保留镜像）' % (RESULT_CFG, LEGACY_CFG))
+    else:
+        print('  ✘ 同步主配置失败，后续步骤已跳过')
 PY = r'D:\soft\python3.10\python.exe'
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
@@ -173,6 +178,9 @@ def do_search(lo, hi, n=None, quick=False, sample=None, seedfile=None):
         run('_s49fast.py', **kw)
     # ★ 把刚搜出来的阵容同步成主配置，避免精修用旧阵容当起点（踩过坑）
     fast = os.path.join(HERE, '_S49_FAST.json')
+    if not os.path.exists(fast):
+        print('  ✘ 搜索没有产出结果（_S49_FAST.json 不存在），停止后续步骤')
+        return
     if os.path.exists(fast):
         sync_result_cfg(fast)
         print('  ※ %s 里装的就是【本次搜索出的阵容+庇佑+胜率】' % RESULT_CFG)
