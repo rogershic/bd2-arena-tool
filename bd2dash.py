@@ -2362,33 +2362,31 @@ async function resetSide(which){
   render(which);
 }
 
-/* ---------- 云端配置弹窗 ---------- */
+/* ---------- 云端数据地址弹窗 ---------- */
 async function cloudCfgInfo(){
   try{ return await (await fetch('/api/cloudcfg')).json(); }catch(e){ return {ok:false}; }
 }
+function _setVal(id, v){
+  const el = document.getElementById(id);
+  if(el) el.value = v;
+  return el;
+}
 async function openCloudCfg(){
   const j = await cloudCfgInfo();
-  document.getElementById('cc_url').value = j.url || '';
-  document.getElementById('cc_token').value = j.token || '';
-  document.getElementById('cc_host').value = j.host || '';
-  document.getElementById('cc_port').value = j.port || 22;
-  document.getElementById('cc_user').value = j.user || 'root';
-  document.getElementById('cc_pass').value = '';
-  document.getElementById('cc_pass').placeholder = j.has_password ? '（已保存，留空不改）' : 'SSH 密码';
-  document.getElementById('cc_dir').value = j.remote_dir || '/opt/bd2/capture';
-  document.getElementById('ccmodal').classList.add('on');
+  _setVal('cc_url', j.url || '');
+  _setVal('cc_token', j.token || '');
+  const m = document.getElementById('ccmodal');
+  if(m) m.classList.add('on');
 }
-function closeCloudCfg(){ document.getElementById('ccmodal').classList.remove('on'); }
+function closeCloudCfg(){
+  const m = document.getElementById('ccmodal');
+  if(m) m.classList.remove('on');
+}
 async function saveCloudCfg(){
-  const body = {
-    url: document.getElementById('cc_url').value.trim(),
-    token: document.getElementById('cc_token').value.trim(),
-    host: document.getElementById('cc_host').value.trim(),
-    port: +document.getElementById('cc_port').value || 22,
-    user: document.getElementById('cc_user').value.trim(),
-    password: document.getElementById('cc_pass').value,
-    remote_dir: document.getElementById('cc_dir').value.trim(),
-  };
+  const u = document.getElementById('cc_url');
+  const t = document.getElementById('cc_token');
+  const body = { url: (u ? u.value : '').trim(), token: (t ? t.value : '').trim() };
+  if(!body.url){ alert('请填数据地址'); return; }
   const j = await (await fetch('/api/cloudcfg', {method:'POST',
     headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})).json();
   if(!j.ok){ alert(j.msg || '保存失败'); return; }
@@ -2401,7 +2399,6 @@ async function syncCloud(){
   if(!j.has_config){ openCloudCfg(); return; }
   run('sync');
 }
-
 
 poll(); stat();
 
