@@ -15,6 +15,7 @@ import os
 import sys
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import urllib.parse
 from urllib.parse import urlparse, parse_qs, unquote
 
 DIR = os.environ.get('BD2_DIR', '/opt/bd2/capture')
@@ -70,8 +71,11 @@ class H(BaseHTTPRequestHandler):
             if not os.path.exists(p):
                 return self._send(404, 'not found')
             data = io.open(p, 'rb').read()
+            # ★ HTTP 头只能用 latin-1，中文文件名会报错（之前 502 就是这个）→ 用 RFC5987 编码
+            fn_ascii = urllib.parse.quote(name)
             return self._send(200, data, 'application/octet-stream',
-                              {'Content-Disposition': 'attachment; filename="%s"' % name})
+                              {'Content-Disposition':
+                               "attachment; filename*=UTF-8''%s" % fn_ascii})
 
         return self._send(404, 'not found')
 
