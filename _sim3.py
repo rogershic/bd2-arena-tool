@@ -942,7 +942,11 @@ def act(u, enemies, allies, rnd, is_second, bless):
                     u['name'], u['self_buff'], u['_sb_stacks'], _maxst, _P * 100))
     # ★★★ 2026-10-30 用户确认: 回歸偶像「4回合回避目标」是【施放技能时】才套上
     #   （突袭准备是庇佑, 开局就有; 回歸偶像要等她出手）→ 记下施放回合
-    if (u.get('name') or '').startswith('Yuri'):
+    # ★★★ 2026-11-07 用户指出: 只有「尤里·回歸偶像」有回避目标, 白雷等其它尤里服饰没有!
+    #   旧实现只判断角色名 startswith('Yuri') → 所有尤里服饰都被套了回避（白雷误加）
+    if ((u.get('name') or '').startswith('Yuri')
+            and ('回歸偶像' in (u.get('name') or '')
+                 or '回归偶像' in (u.get('name') or ''))):
         u['untarg_from'] = rnd
         u['untarg'] = 1          # ★ 施放当刻【立刻】不可被选中（之前只记回合数，漏了即时生效）
         if VERBOSE[0]:

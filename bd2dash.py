@@ -523,7 +523,11 @@ def test_detail(payload):
         return {'ok': False, 'msg': '模拟失败: %s' % _e}
     finally:
         S.VERBOSE[0] = False
-    lines = simp_log([l for l in buf.getvalue().splitlines() if l.strip()][-220:])
+    # ★ 2026-11-07 用户要求: 不截断（原来只留最后 220 行，前面的回合看不到）
+    _all = [l for l in buf.getvalue().splitlines() if l.strip()]
+    if len(_all) > 4000:
+        _all = ['…（前面省略 %d 行）' % (len(_all) - 4000)] + _all[-4000:]
+    lines = simp_log(_all)
     units = []
     for u in (y[0] or []):
         nm = str(u.get('name') or '')
@@ -2143,7 +2147,40 @@ async function openBattle(idx){
   }
   renderBattle(out);
 }
+
+/* ---------- 回放日志：格式化 + 过滤 ---------- */
+const LOGF = {act:false, dmg:false};
+function _esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function _filterLog(lines){
+  return (lines || []).length;
+}
+function _fmtLog(lines){
+  const ls = lines || [];
+  if(!ls.length) return '（没有日志）';
+  return ls.map(function(l){
+    const t = l.trim(), e = _esc(l);
+    if(/第\\s*\\d+\\s*回合/.test(t) || /^[─—=\\-]{6,}/.test(t))
+      return '<div style="margin:8px 0 4px;padding:2px 6px;background:#1b2432;border-left:3px solid #4f8cff;'
+        + 'border-radius:3px;color:#9fc0ff;font-weight:600">' + e + '</div>';
+    if(t.startsWith('▶'))
+      return '<div style="margin-top:6px;padding:2px 6px;background:#18202c;border-radius:4px;'
+        + 'color:#e6edf7;font-weight:600">' + e + '</div>';
+    if(t.startsWith('['))
+      return '<div style="padding-left:10px;color:#8fa6c4">' + e + '</div>';
+    if(t.startsWith('我方 '))
+      return '<div style="color:#7ee0b8">' + e + '</div>';
+    if(t.startsWith('敌方 '))
+      return '<div style="color:#ffb3b3">' + e + '</div>';
+    if(/☠死亡/.test(t))
+      return '<div style="padding-left:10px;color:#ff8080">' + e + '</div>';
+    if(/吃\s*[\d.]+\s*伤害/.test(t))
+      return '<div style="padding-left:10px;color:#c7d2e0">' + e + '</div>';
+    return '<div style="padding-left:10px">' + e + '</div>';
+  }).join('');
+}
+
 function renderBattle(out){
+  window.__lastBattle = out;
   const oks = out.filter(o => o.j && o.j.ok);
   if(!oks.length){ document.getElementById('bbody').innerHTML =
     '<span style="color:#ff8080">' + (((out[0]||{}).j||{}).msg || '模拟失败') + '</span>'; return; }
@@ -2166,16 +2203,18 @@ function renderBattle(out){
     + '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">'
     + (d0.units || []).map(u => '<span class="bchip2" style="cursor:default">#' + (u.pos + 1)
         + ' ' + u.name + '</span>').join('') + '</div>';
-  // ★ 先攻和后攻【各显示一份】日志
+  // ★ 先攻和后攻【各显示一份】日志（带过滤 + 行动行高亮）
   oks.forEach(o => {
     const logs = (o.j.log || []);
+    const shown = _filterLog(logs);
     h += '<div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0 4px">'
       + '<span style="font-size:11.5px;color:#8fb6dd">' + o.j.side + ' 回合日志</span>'
       + '<span style="font-size:11px;color:' + (o.j.result === '胜' ? '#06d6a0' : '#ff8080') + '">'
-      + o.j.result + '　' + o.j.rounds + ' 回合　' + logs.length + ' 行</span></div>'
-      + '<pre style="max-height:260px;overflow:auto;background:#0f141b;border:1px solid #232a38;'
-      + 'border-radius:9px;padding:9px;font-size:11px;line-height:1.55;color:#a8b3c4;white-space:pre-wrap;'
-      + 'margin:0 0 8px">' + (logs.join('\n') || '（没有日志）') + '</pre>';
+      + o.j.result + '　' + o.j.rounds + ' 回合　' + shown + '/' + logs.length + ' 行</span></div>'
+      + '<div style="max-height:280px;overflow:auto;background:#0f141b;border:1px solid #232a38;'
+      + 'border-radius:9px;padding:8px 9px;font-size:11px;line-height:1.6;color:#a8b3c4;'
+      + 'font-family:ui-monospace,Consolas,monospace;white-space:pre-wrap;margin:0 0 8px">'
+      + (_fmtLog(logs) || '（没有日志）') + '</div>';
   });
   document.getElementById('bbody').innerHTML = h;
 }
