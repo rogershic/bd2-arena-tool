@@ -3,10 +3,15 @@
    name_map 的 key 有简体版本，value 是繁体 → 反推就能得到对照表
 """
 import io
+import _data
 import json
 import os
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 _T2S = None
 
 
@@ -16,7 +21,7 @@ def _build():
         return _T2S
     t2s = {}
     try:
-        nm = json.load(io.open(os.path.join(HERE, 'name_map.json'), encoding='utf-8'))
+        nm = json.load(io.open(_data.p('name_map.json'), encoding='utf-8'))
     except Exception:
         _T2S = {}
         return _T2S

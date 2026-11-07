@@ -3,12 +3,17 @@
    目标分段由 SEGLO 指定（默认 1800）
 """
 import io, os, sys, time, json, copy, pickle, random, collections
+import _data
 import multiprocessing as mp
 os.environ['USE_POT_MAX'] = '0'
 os.environ['ENEMY_ALWAYS_CRIT'] = '1'
 os.environ['CRIT_RANDOM'] = '1'
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, HERE)
 import bd2cfg
 
@@ -71,7 +76,7 @@ def init(nscreen, seedn=1):
     #   → 用 chars_db 把【所有有爆发的服饰】都补成 3（简繁两套键）
     try:
         import _zh as _zhx
-        for _c in json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8')):
+        for _c in json.load(io.open(_data.p('chars_db.json'), encoding='utf-8')):
             for _x in (_c.get('costumes') or []):
                 if _x.get('burst'):
                     _k1 = (_c.get('character'), _x.get('costumeName'))
@@ -79,7 +84,7 @@ def init(nscreen, seedn=1):
                     BURST[(_zhx.t2s(_k1[0]), _zhx.t2s(_k1[1]))] = 3
     except Exception:
         pass
-    NM = json.load(io.open(os.path.join(HERE, 'name_map.json'), encoding='utf-8'))
+    NM = json.load(io.open(_data.p('name_map.json'), encoding='utf-8'))
     COST = {(v['ch'], v['co']): v['cost'] for v in NM.values() if v.get('cost')}
     POOL, _ = pickle.load(io.open(os.path.join(HERE, '_opp_cache.pkl'), 'rb'))
     P = [y for y in POOL if SEGLO <= (y[3] or 0) <= SEGHI]
@@ -137,14 +142,14 @@ def ev(args):
 
 def main():
     global COST
-    NM0 = json.load(io.open(os.path.join(HERE, 'name_map.json'), encoding='utf-8'))
+    NM0 = json.load(io.open(_data.p('name_map.json'), encoding='utf-8'))
     COST = {(v['ch'], v['co']): v['cost'] for v in NM0.values() if v.get('cost')}
-    DB = json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8'))
+    DB = json.load(io.open(_data.p('chars_db.json'), encoding='utf-8'))
     EN2CN = {}
     for c in DB:
         for co in (c.get('costumes') or []):
             EN2CN[((c.get('enName') or '').lower(), co.get('costumeName'))] = (c.get('character'), co.get('costumeName'))
-    BM = json.load(io.open(os.path.join(HERE, 'bless_id_map.json'), encoding='utf-8'))
+    BM = json.load(io.open(_data.p('bless_id_map.json'), encoding='utf-8'))
     PTS = {}
     for k, v in BM.items():
         if isinstance(v, dict) and v.get('name'):

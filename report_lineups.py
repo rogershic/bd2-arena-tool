@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 """把 piggy_raw.jsonl 解密后的 RankDetail 还原成可读防守阵容报告"""
 import json, base64, os, re, io, collections
+import _data
 from Crypto.Cipher import AES
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 def load_keys():
     """当前 key 优先, 其次是历史 key(换 key 后老数据仍要能解)"""
     ks = []
@@ -76,7 +81,7 @@ def load_costume():
 
 ROLE = {}
 def load_role():
-    p = os.path.join(HERE, 'role_id_map.txt')
+    p = _data.p('role_id_map.txt')
     if os.path.exists(p):
         for ln in open(p, encoding='utf-8', errors='replace'):
             parts = ln.strip().split('\t')
@@ -161,7 +166,7 @@ def load_nick():
 
 def load_bless():
     """数字ID -> 庇佑中文名/类别/点数"""
-    p = os.path.join(HERE, 'bless_id_map.json')
+    p = _data.p('bless_id_map.json')
     if os.path.exists(p):
         BLESS.update(json.load(io.open(p, encoding='utf-8')))
 
@@ -193,7 +198,7 @@ def bless_text(ids):
 
 def load_cn():
     """中文译名表: costumeId <TAB> 中文角色名 <TAB> 中文服装名"""
-    p = os.path.join(HERE, 'cn_map.txt')
+    p = _data.p('cn_map.txt')
     if os.path.exists(p):
         for ln in io.open(p, encoding='utf-8'):
             ln = ln.strip()

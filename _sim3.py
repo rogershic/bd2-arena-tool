@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """黄金竞技场 战斗模拟器 v3 —— 庇佑开局并入属性 + 读取防守方真实庇佑"""
 import json, io, os, re, sys
+import _data
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 DISPEL_N = [0]          # 诊断用: 驱散实际清掉护盾/减伤的次数
 VERBOSE = [0]
@@ -14,17 +15,26 @@ DMG_LOG = [0.0, '']     # 诊断用: [总伤害, 归属方] —— 与实战"总
 DMG_DEBUG = [0]         # 设成 1 打印伤害公式各乘区分解
 DMG_BY_UNIT = {}        # 诊断用: 我方每人累计伤害
 DMG_ENEMY = {}          # 诊断用: 敌方每人累计伤害
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 # AOE 口径: full = 范围内每个目标都吃满「段数×倍率」; split = 段数在范围内目标间分摊
 AOE_MODE = os.environ.get('AOE_MODE', 'full')
 # ★ 2026-10-16 用户口述实证: 多段技能(如魅魔·海滨度假2段、堕落之星2段)每段都打【同一范围】,
 #   即范围内每个目标吃满所有段数(full), 不是摊给不同人、也不是只打最前方。魅魔尤其爆发3伤害极高。
 import types
 import random
-_src = io.open(os.path.join(HERE, '_sim.py'), encoding='utf-8').read().split('lines = io.open')[0]
-s1 = types.SimpleNamespace()
-s1.__dict__['__file__'] = os.path.join(HERE, '_sim.py')
-exec(compile(_src, '_sim_head', 'exec'), s1.__dict__)
+# ★★★ 2026-11-07 打包 exe 用: 优先直接 import _sim（源码不再落盘）
+#   旧做法是读 _sim.py 源码再 exec —— exe 里没有 .py 文件会崩
+try:
+    import _sim as s1
+except Exception:
+    _src = io.open(os.path.join(HERE, '_sim.py'), encoding='utf-8').read()
+    s1 = types.SimpleNamespace()
+    s1.__dict__['__file__'] = os.path.join(HERE, '_sim.py')
+    exec(compile(_src, '_sim_head', 'exec'), s1.__dict__)
 _us_orig = s1.unit_stats
 
 # ★★★ 2026-10-24: 技能带「若敵人為主要目標，則變為…」的服饰 → (普通倍率, 主目标倍率)
@@ -2033,7 +2043,7 @@ def bless_points(names):
     if _BLESS_COST is None:
         _BLESS_COST = {}
         try:
-            _m = json.load(io.open(os.path.join(HERE, 'bless_id_map.json'), encoding='utf-8'))
+            _m = json.load(io.open(_data.p('bless_id_map.json'), encoding='utf-8'))
             for k, v in _m.items():
                 _BLESS_COST[v['name']] = v.get('cost', 0)
         except Exception:

@@ -3,11 +3,16 @@
    改规则只需要改 season_map.json，不用动代码
 """
 import io
+import _data
 import json
 import os
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-_PATH = os.path.join(HERE, 'season_map.json')
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
+_PATH = _data.p('season_map.json')
 
 DEFAULTS = {
     'season': 49, 'season_name': '赛季49',

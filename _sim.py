@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 """黄金竞技场 战斗模拟器 v2 —— 区分 先攻/后攻 两套庇佑"""
 import json
+import _data
 import io, os, re, sys
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
-db = json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8'))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
+db = json.load(io.open(_data.p('chars_db.json'), encoding='utf-8'))
 # ★ 我的真实练度(破度/爆发), 见 my_box.json; 未配置的角色按满练(break=5, burst=3)算
 try:
     # ★ 2026-10-21: 支持 MY_BOX_FILE 环境变量，方便切换大号/小号练度
@@ -91,7 +96,7 @@ def add(acc, k, v):
         acc[key] = acc.get(key, 0) + float(m.group(1))
 
 try:
-    _RANGE_T = json.load(io.open(os.path.join(HERE, 'range_table.json'), encoding='utf-8'))
+    _RANGE_T = json.load(io.open(_data.p('range_table.json'), encoding='utf-8'))
 except Exception as _re_:
     _RANGE_T = {}
     import sys as _sys

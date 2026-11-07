@@ -25,7 +25,11 @@ import urllib.parse
 import urllib.request
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 
 
 def _cfg_path():
@@ -220,7 +224,9 @@ def main():
         os.environ.setdefault('BD2_MINSCORE', '0')
         os.environ.setdefault('BD2_SEASON_TAG', '赛季49')
         import subprocess
-        r = subprocess.run([sys.executable, '-u', os.path.join(HERE, 'build_pool.py')],
+        r = subprocess.run(([sys.executable, 'build_pool.py']      # exe：传模块名，由 exe 自己分发
+                        if getattr(sys, 'frozen', False) else
+                        [sys.executable, '-u', os.path.join(HERE, 'build_pool.py')]),
                            cwd=HERE)
         print('建池退出码:', r.returncode)
     return 0

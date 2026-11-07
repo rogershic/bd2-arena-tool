@@ -15,7 +15,11 @@ import re
 import time
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 from curl_cffi import requests as cr
 from Crypto.Cipher import AES
 

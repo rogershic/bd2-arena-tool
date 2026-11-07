@@ -16,7 +16,11 @@ import os
 import subprocess
 import sys
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 # ★ 2026-11-07: 主配置文件改名（旧的 _S49_2000.json 是历史命名，容易误解）
 RESULT_CFG = '_S49_RESULT.json'
 LEGACY_CFG = '_S49_2000.json'    # 旧名，兼容老命令
@@ -24,9 +28,13 @@ LEGACY_CFG = '_S49_2000.json'    # 旧名，兼容老命令
 
 def sync_result_cfg(src):
     """把 src 同步成主配置（同时更新 _S49_LAST.json 和旧名镜像）"""
+    _src = os.path.abspath(src)
     for dst in (RESULT_CFG, '_S49_LAST.json', LEGACY_CFG):
+        _dst = os.path.abspath(os.path.join(HERE, dst))
+        if _src == _dst:
+            continue          # 源和目标是同一个文件，不用拷（之前会报 same file）
         try:
-            shutil.copy(src, os.path.join(HERE, dst))
+            shutil.copy(src, _dst)
         except Exception as e:
             print('  同步 %s 失败: %s' % (dst, e))
     ok = os.path.exists(os.path.join(HERE, RESULT_CFG))
@@ -34,7 +42,14 @@ def sync_result_cfg(src):
         print('  已同步为 %s / _S49_LAST.json（旧名 %s 保留镜像）' % (RESULT_CFG, LEGACY_CFG))
     else:
         print('  ✘ 同步主配置失败，后续步骤已跳过')
-PY = sys.executable          # 用当前解释器（便携版/别人的电脑也能跑）
+PY = sys.executable
+
+FROZEN = bool(getattr(sys, 'frozen', False))
+
+
+def pyargs(script, *rest):
+    """打包成 exe 后：exe 自己分发；源码模式：python -u script.py"""
+    return ([PY, script] if FROZEN else [PY, '-u', script]) + list(rest)
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 BASE_ENV = {
@@ -60,7 +75,7 @@ def env(**kw):
 
 def run(script, *args, **kw):
     """跑一个脚本，输出直接透传到控制台"""
-    cmd = [PY, '-u', script] + [str(a) for a in args]
+    cmd = pyargs(script, *[str(a) for a in args])
     print('\n▶ %s %s' % (script, ' '.join(str(a) for a in args)), flush=True)
     p = subprocess.run(cmd, cwd=HERE, env=env(**kw))
     if p.returncode != 0:
@@ -205,52 +220,8 @@ _last_scores = {}
 def do_verify(cfg, lo, hi, N, save=False):
     _t = '本次搜索结果' if os.path.basename(cfg).startswith('_S49_') else cfg
     step('复核 %s 在 %s~%s（N=%s）  文件: %s' % (_t, lo, hi, N, os.path.basename(cfg)))
-    code = r'''
-import io,os,sys,json,copy,pickle,random
-os.environ['USE_POT_MAX']='0'; os.environ['ENEMY_ALWAYS_CRIT']='1'; os.environ['CRIT_RANDOM']='1'
-sys.stdout.reconfigure(encoding='utf-8',errors='replace')
-HERE=__HERE__
-sys.path.insert(0,HERE)
-import _sim3 as S
-S.bless_points([])
-try:
-    BOX=json.load(io.open(os.path.join(HERE,'my_box.json'),encoding='utf-8'))
-except Exception:
-    BOX={}   # 没个人数据也能复核
-BURST={}
-for k,v in BOX.items():
-    if k=='_說明' or '·' not in k: continue
-    ch,co=k.split('·',1); BURST[(ch,co)]=max(BURST.get((ch,co),0),v.get('burst') or 0)
-POOL,_=pickle.load(io.open(os.path.join(HERE,'_opp_cache.pkl'),'rb'))
-C=json.load(io.open(os.path.join(HERE,'__CFG__'),encoding='utf-8'))
-def en(u):
-    X=S.clone_team(u)
-    for x in X:
-        q=x.get('pos')
-        if not isinstance(q,int):
-            try: q=int(q)
-            except Exception: q=0
-        x['pos']=q if q>=0 else 0
-    return X
-t=[]
-for i,(ch,co,pos) in enumerate(C['team']):
-    u=S.unit_stats(ch,co,i+1,pos,5,BURST.get((ch,co),0)); u['pos']=pos; u['order']=i+1; t.append(u)
-g=[y for y in POOL if int('__LO__')<=(y[3] or 0)<=int('__HI__')]
-N=int('__N__')
-a=b=0
-for _i,y in enumerate(g):
-    for r in range(N):
-        random.seed(1000+r+_i*17); a+= S.battle(S.clone_team(t),en(y[0]),True,list(C['bf']),y[2])[0]=='A'
-        random.seed(2000+r+_i*17); b+= S.battle(S.clone_team(t),en(y[0]),False,list(C['bs']),y[1])[0]=='A'
-n=len(g)*N
-print()
-print('  %s套 N=%d  先 %.1f%%  后 %.1f%%  综合 %.1f%%' % (len(g),N,100.0*a/n,100.0*b/n,50.0*(a+b)/n))
-print('__SCORES__ %.4f %.4f' % (100.0*a/n, 100.0*b/n))
-'''
-    code = (code.replace('__HERE__', repr(HERE)).replace('__CFG__', cfg)
-                .replace('__LO__', str(lo)).replace('__HI__', str(hi))
-                .replace('__N__', str(N)))
-    p = subprocess.run([PY, '-u', '-c', code], cwd=HERE, env=env(),
+    _vargs = pyargs('_verify_run.py', cfg, str(lo), str(hi), str(N))
+    p = subprocess.run(_vargs, cwd=HERE, env=env(),
                        stdout=subprocess.PIPE, text=True, encoding='utf-8', errors='replace')
     for _line in (p.stdout or '').splitlines():
         if _line.startswith('__SCORES__'):

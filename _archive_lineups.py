@@ -17,6 +17,7 @@
         bless_first / bless_second
 """
 import io
+import _data
 import os
 import re
 import sys
@@ -24,7 +25,11 @@ import json
 import datetime
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 SRC = os.path.join(HERE, sys.argv[1] if len(sys.argv) > 1 else '防守阵容_最新300名.txt')
 SEASON = sys.argv[2] if len(sys.argv) > 2 else '47'
 TAG = sys.argv[3] if len(sys.argv) > 3 else 'snapshot'
@@ -37,7 +42,7 @@ if not os.path.exists(SRC):
 # ★ 裸 ID → 名称（报告里未识别的庇佑会写成 ID110 这种）
 _ID2NAME = {}
 try:
-    _m = json.load(io.open(os.path.join(HERE, 'bless_id_map.json'), encoding='utf-8'))
+    _m = json.load(io.open(_data.p('bless_id_map.json'), encoding='utf-8'))
     _ID2NAME = {int(k): v['name'] for k, v in _m.items()}
 except Exception:
     pass

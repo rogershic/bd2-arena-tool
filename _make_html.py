@@ -7,23 +7,28 @@
      规则               ← season_map.json（bd2cfg）
 """
 import io, os, sys, json, datetime
+import _data
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, HERE)
 import bd2cfg
 import _zh
 
-NM = json.load(io.open(os.path.join(HERE, 'name_map.json'), encoding='utf-8'))
+NM = json.load(io.open(_data.p('name_map.json'), encoding='utf-8'))
 COST = {(v['ch'], v['co']): v['cost'] for v in NM.values() if v.get('cost')}
-BM = json.load(io.open(os.path.join(HERE, 'bless_id_map.json'), encoding='utf-8'))
+BM = json.load(io.open(_data.p('bless_id_map.json'), encoding='utf-8'))
 PTS, BDESC = {}, {}
 for _k, _v in BM.items():
     if isinstance(_v, dict) and _v.get('name'):
         PTS[_v['name']] = _v.get('cost') or _v.get('point') or 1
         BDESC[_v['name']] = _v.get('desc', '')
 
-DB = json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8'))
+DB = json.load(io.open(_data.p('chars_db.json'), encoding='utf-8'))
 ATTR = {}
 for c in DB:
     for x in (c.get('costumes') or []):

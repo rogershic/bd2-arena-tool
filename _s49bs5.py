@@ -3,12 +3,17 @@
    从现有后攻组出发，逐条增/删/换，预算 8 点，抽样加速
 """
 import io, os, sys, json, copy, pickle, random
+import _data
 import multiprocessing as mp
 os.environ['USE_POT_MAX'] = '0'
 os.environ['ENEMY_ALWAYS_CRIT'] = '1'
 os.environ['CRIT_RANDOM'] = '1'
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, HERE)
 SEGLO = int(os.environ.get('SEGLO', '2000') or 2000)
 NS = int(os.environ.get('NS', '200') or 200)
@@ -39,7 +44,7 @@ if __import__('multiprocessing').current_process().name == 'MainProcess':
 TEAM = [tuple(x) for x in CFG['team']]
 BF = list(CFG['bf'])
 GS = BURST = S = None
-BM = json.load(io.open(os.path.join(HERE, 'bless_id_map.json'), encoding='utf-8'))
+BM = json.load(io.open(_data.p('bless_id_map.json'), encoding='utf-8'))
 PTS = {}
 for k, v in BM.items():
     if isinstance(v, dict) and v.get('name'):
@@ -67,7 +72,7 @@ def init():
     #   → 用 chars_db 把【所有有爆发的服饰】都补成 3（简繁两套键）
     try:
         import _zh as _zhx
-        for _c in json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8')):
+        for _c in json.load(io.open(_data.p('chars_db.json'), encoding='utf-8')):
             for _x in (_c.get('costumes') or []):
                 if _x.get('burst'):
                     _k1 = (_c.get('character'), _x.get('costumeName'))

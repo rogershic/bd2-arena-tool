@@ -11,7 +11,11 @@ import sys
 import datetime
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(HERE, '阵容总库.jsonl')
 
 # 所有解析过的阵容来源（不含 raw 抓包和 txt 报告）

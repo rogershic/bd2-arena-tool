@@ -4,21 +4,26 @@
    ② 分数用【当前排行榜】的分数（不在该分段的，旧数据自动剔除）
 """
 import io, os, sys, json, pickle, re
+import _data
 os.environ['USE_POT_MAX'] = '0'
 # 2026-10-27 修正: 阵容历史库不记录爆发 -> 之前所有人默认爆0, 严重低估对手
 OPP_BURST = 3
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 MIN_SCORE = int(os.environ.get('BD2_MINSCORE', '1900'))   # ★ 新赛季初期榜单低 → 用 1500
 sys.path.insert(0, HERE)
 import _sim3 as S
 try:
-    EN2CN = json.load(io.open(os.path.join(HERE, 'en2cn.json'), encoding='utf-8'))
+    EN2CN = json.load(io.open(_data.p('en2cn.json'), encoding='utf-8'))
 except Exception:
     EN2CN = {}
 # name_map: 「角色·服饰」整体键 -> {ch, co, cost}  (英文名兜底用)
 try:
-    NM_ALL = json.load(io.open(os.path.join(HERE, 'name_map.json'), encoding='utf-8'))
+    NM_ALL = json.load(io.open(_data.p('name_map.json'), encoding='utf-8'))
 except Exception:
     NM_ALL = {}
 
@@ -27,7 +32,7 @@ import _zh                      # 繁→简（DB 是繁体名，抓包记录是�
 
 BURST_COS = set()
 try:
-    for _c in json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8')):
+    for _c in json.load(io.open(_data.p('chars_db.json'), encoding='utf-8')):
         for _x in (_c.get('costumes') or []):
             if _x.get('burst'):
                 BURST_COS.add((_zh.t2s(_c.get('character')),

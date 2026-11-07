@@ -4,6 +4,7 @@
 四个入口: 阵容 / 赛季规则 / 庇佑效果 / 服饰费用
 """
 import io
+import _data
 import json
 import os
 import re
@@ -15,9 +16,21 @@ import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _bd2sys
+HERE = (os.environ.get('BD2_HOME') or
+        (os.path.dirname(os.path.abspath(_bd2sys.executable))
+         if getattr(_bd2sys, 'frozen', False)
+         else os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, HERE)
-PY = sys.executable          # 用当前解释器（便携版/别人的电脑也能跑）
+PY = sys.executable
+
+FROZEN = bool(getattr(sys, 'frozen', False))
+
+
+def pyargs(script, *rest):
+    """打包成 exe 后：exe 自己分发；源码模式：python -u script.py"""
+    return ([PY, script] if FROZEN else [PY, '-u', script]) + list(rest)
+          # 用当前解释器（便携版/别人的电脑也能跑）
 PORT = int(os.environ.get('BD2_PORT') or 8766)
 import bd2cfg
 import _make_html as MH
@@ -33,8 +46,8 @@ BASE_ENV = {
 BUILD = time.strftime('%H:%M:%S')
 JOB = {'proc': None, 'lines': [], 'name': '', 'start': 0}
 LOCK = threading.Lock()
-BLESS_PATH = os.path.join(HERE, 'bless_id_map.json')
-NAME_PATH = os.path.join(HERE, 'name_map.json')
+BLESS_PATH = _data.p('bless_id_map.json')
+NAME_PATH = _data.p('name_map.json')
 COSTID_PATH = os.path.join(HERE, 'costume_cost_byid_s49.json')
 SAVED_PATH = os.path.join(HERE, '保存的阵容.json')
 
@@ -126,7 +139,7 @@ def _build_norm():
             if v.get('ch') and v.get('co'):
                 _NORM[k] = (v['ch'], v['co'])
                 _NORMS['%s·%s' % (_zh.t2s(v['ch']), _zh.t2s(v['co']))] = (v['ch'], v['co'])
-        db = json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8'))
+        db = json.load(io.open(_data.p('chars_db.json'), encoding='utf-8'))
         for c in db:
             ch = c.get('character')
             en = (c.get('enName') or '').lower()
@@ -237,7 +250,7 @@ def _maps():
         for v in nm.values():
             if isinstance(v, dict) and v.get('ch') and v.get('co'):
                 _COST[(v['ch'], v['co'])] = v.get('cost')
-        db = json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8'))
+        db = json.load(io.open(_data.p('chars_db.json'), encoding='utf-8'))
         _ATTR = {}
         for c in db:
             for x in (c.get('costumes') or []):
@@ -417,7 +430,7 @@ def en2cn_map():
     if _ENCN is None:
         _ENCN = {}
         try:
-            for c in json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8')):
+            for c in json.load(io.open(_data.p('chars_db.json'), encoding='utf-8')):
                 en = c.get('enName')
                 cn = c.get('character')
                 if en and cn:
@@ -608,7 +621,7 @@ def db_costumes():
     """(角色, 服饰) -> DB 原始记录"""
     global _DBCO
     if _DBCO is None:
-        db = json.load(io.open(os.path.join(HERE, 'chars_db.json'), encoding='utf-8'))
+        db = json.load(io.open(_data.p('chars_db.json'), encoding='utf-8'))
         _DBCO = {}
         for c in db:
             for x in (c.get('costumes') or []):
@@ -915,7 +928,7 @@ td input{margin:0;padding:3px 6px;font-size:12px}
     <button class="act act-sync" onclick="syncCloud()">
       <span class="ic">↓</span><span class="lb">同步云端数据</span>
       <span class="sub">拉最新</span></button>
-    <div class="row"><input id="lo" value="2000"><input id="hi" value="2299"></div>
+    <div class="row"><input id="lo" placeholder="起始分，例如 2000"><input id="hi" placeholder="结束分，例如 2299"></div>
     <div class="row"><input id="sn" value="6" title="N（越大越准越慢）">
       <label style="font-size:12px;color:#a8b3c4;display:flex;align-items:center;gap:5px;white-space:nowrap">
       <input type="checkbox" id="sq" checked style="width:auto;margin:0">快速模式（默认开）</label></div>
@@ -1051,10 +1064,10 @@ td input{margin:0;padding:3px 6px;font-size:12px}
       <div style="font-size:11.5px;color:#8b97a8;margin-bottom:6px">对手分数范围</div>
       <div class="row" style="align-items:center">
         <span style="font-size:12px;color:#a8b3c4;white-space:nowrap">从</span>
-        <input id="t_lo" type="number" value="2400" title="最低分（含）" style="width:90px"
+        <input id="t_lo" type="number" placeholder="起始分" title="最低分（含）" style="width:90px"
                oninput="showPoolN()">
         <span style="font-size:12px;color:#a8b3c4">分 到</span>
-        <input id="t_hi" type="number" value="2500" title="最高分（含）" style="width:90px"
+        <input id="t_hi" type="number" placeholder="结束分" title="最高分（含）" style="width:90px"
                oninput="showPoolN()">
         <span style="font-size:12px;color:#a8b3c4">分</span>
       </div>
@@ -1334,7 +1347,9 @@ function activateTab(name){
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>activateTab(t.dataset.t));
 let lastLen=-1;
 async function runSearch(){
-  const lo = val('lo'), hi = val('hi');
+  const _seg = _needSeg('lo', 'hi');
+  if(!_seg) return;
+  const lo = _seg[0], hi = _seg[1];
   try{
     const j = await (await fetch('/api/poolstat?lo=' + (lo || 0) + '&hi=' + (hi || 99999))).json();
     if(j.ok && j.inrange === 0){
@@ -1822,13 +1837,16 @@ function applyStatAll(){
   });
   renderStatList(); render(which);
 }
+function el_reset_hint(){const e=document.getElementById('t_result'); if(e) e.innerHTML='';}
 async function runTest(){
   if(!ED.our.team.length){ alert('请先在左边选择我方阵容'); return; }
   const mode=(document.getElementById('t_mode').value)||'range';
   const opp={mode:mode};
   if(mode==='range'){
-    opp.lo=+document.getElementById('t_lo').value;
-    opp.hi=+document.getElementById('t_hi').value;
+    const _segT = _needSeg('t_lo', 't_hi');
+    if(!_segT){ el_reset_hint(); return; }
+    opp.lo=_segT[0];
+    opp.hi=_segT[1];
     opp.sample=+document.getElementById('t_sample').value;
   }else if(mode==='lib'){
     if(!LIBPICK){ alert('请先点「选择阵容库玩家」选一个人'); return; }
@@ -2346,13 +2364,23 @@ function uiConfirm(msg, title){
 function uiPrompt(msg, def, title){
   return _dlgOpen({title: title || '请输入', msg: msg, input: true, value: def || ''});
 }
+/* 钱包等浏览器插件会往页面注入脚本并抛异常（例：Failed to connect to MetaMask）
+   —— 那不是我们工具的问题，过滤掉，别吓用户 */
+const _EXT_NOISE = /metamask|ethereum|web3|chrome-extension|moz-extension|evm|wallet|inpage/i;
+function _isExtNoise(msg, src){
+  const t = String(msg || '') + ' ' + String(src || '');
+  return _EXT_NOISE.test(t);
+}
 window.addEventListener('error', function(e){
+  if(_isExtNoise(e.message, (e.filename || '') + ' ' + ((e.error && e.error.stack) || ''))) return;
   const el = document.getElementById('jserr');
   if(el){ el.style.display = ''; el.textContent = '脚本错误: ' + (e.message || '') + '  (行 ' + (e.lineno||'?') + ')'; }
 });
 window.addEventListener('unhandledrejection', function(e){
+  const r = e.reason || {};
+  if(_isExtNoise((r && (r.message || r)) || '', (r && r.stack) || '')) return;
   const el = document.getElementById('jserr');
-  if(el){ el.style.display = ''; el.textContent = '异步错误: ' + ((e.reason && (e.reason.message||e.reason)) || ''); }
+  if(el){ el.style.display = ''; el.textContent = '异步错误: ' + ((r && (r.message || r)) || ''); }
 });
 document.addEventListener('keydown', function(e){
   if(!_DLG) return;
@@ -2361,6 +2389,20 @@ document.addEventListener('keydown', function(e){
 });
 
 window.alert = function(m){ uiAlert(m); };
+
+
+
+/* 分数段必须手填，没填就提醒（别人不一定是搜这个分段） */
+function _needSeg(loId, hiId){
+  const a = document.getElementById(loId), b = document.getElementById(hiId);
+  const lo = a ? String(a.value || '').trim() : '';
+  const hi = b ? String(b.value || '').trim() : '';
+  if(!lo || !hi){ uiAlert('请先填对手分数范围（例如 2000 到 2299）'); return null; }
+  const n1 = parseInt(lo, 10), n2 = parseInt(hi, 10);
+  if(isNaN(n1) || isNaN(n2)){ uiAlert('分数范围要填数字'); return null; }
+  if(n1 > n2){ uiAlert('起始分不能大于结束分'); return null; }
+  return [n1, n2];
+}
 
 /* ---------- 重置（清空已选服饰 + 庇佑） ---------- */
 function resetOur(){ return resetSide('our'); }
@@ -2577,7 +2619,7 @@ class H(BaseHTTPRequestHandler):
                 if str(x.get('id')) == sid:
                     # ★ 庇佑名归一化到当前列表里的写法（收藏里可能是繁体）
                     try:
-                        _bl = json.load(io.open(os.path.join(HERE, 'bless_id_map.json'), encoding='utf-8'))
+                        _bl = json.load(io.open(_data.p('bless_id_map.json'), encoding='utf-8'))
                         _blnames = []
                         for _k2, _v2 in _bl.items():
                             _nm2 = _v2.get('name') if isinstance(_v2, dict) else None
@@ -2928,18 +2970,18 @@ class H(BaseHTTPRequestHandler):
         task = req.get('task')
         args = req.get('args') or {}
         if task == 'capture':
-            ok, msg = start_job('全量抓取', [PY, '-u', 'bd2tool.py', 'capture', '--n', str(args.get('n', 1000))])
+            ok, msg = start_job('全量抓取', pyargs('bd2tool.py', 'capture', '--n', str(args.get('n', 1000))))
         elif task == 'sync':
-            ok, msg = start_job('同步云端数据', [PY, '-u', '_sync_cloud.py'])
+            ok, msg = start_job('同步云端数据', pyargs('_sync_cloud.py'))
         elif task == 'pool':
-            ok, msg = start_job('重建对手池', [PY, '-u', 'bd2tool.py', 'pool'])
+            ok, msg = start_job('重建对手池', pyargs('bd2tool.py', 'pool'))
         elif task == 'merge':
             full = str(args.get('full', 0)) == '1'
             ok, msg = start_job('整合总库' + ('（全赛季）' if full else '（本赛季）'),
-                                [PY, '-u', 'bd2tool.py', 'merge'] + (['--full'] if full else []))
+                                pyargs('bd2tool.py', 'merge') + (['--full'] if full else []))
         elif task == 'search':
             lo, hi = str(args.get('lo', 2000)), str(args.get('hi', 99999))
-            cmd = [PY, '-u', 'bd2tool.py', 'search', '--lo', lo, '--hi', hi]
+            cmd = pyargs('bd2tool.py', 'search', '--lo', lo, '--hi', hi)
             if args.get('n'):
                 cmd += ['--n', str(args['n'])]
             if str(args.get('quick', 0)) == '1':
@@ -2951,17 +2993,17 @@ class H(BaseHTTPRequestHandler):
             cfg = str(args.get('cfg', '_S49_2000.json'))
             env_w = {'WORKERS': str(args['workers'])} if args.get('workers') else None
             ok, msg = start_job('复核 %s' % cfg,
-                                [PY, '-u', 'bd2tool.py', 'verify', '--cfg', cfg,
+                                pyargs('bd2tool.py', 'verify', '--cfg', cfg,
                                  '--lo', str(args.get('lo', 2000)), '--hi', str(args.get('hi', 99999)),
-                                 '--n', str(args.get('n', 10))], env_w)
+                                 '--n', str(args.get('n', 10))), env_w)
         elif task == 'html':
-            ok, msg = start_job('生成可视化', [PY, '-u', 'bd2tool.py', 'html'])
+            ok, msg = start_job('生成可视化', pyargs('bd2tool.py', 'html'))
         else:
             ok, msg = False, '未知任务'
         return self._send(200, json.dumps({'ok': ok, 'msg': msg}, ensure_ascii=False))
 
 
-if __name__ == '__main__':
+def main():
     srv = ThreadingHTTPServer(('127.0.0.1', PORT), H)
     url = 'http://127.0.0.1:%d' % PORT
     print('控制台已启动: %s' % url)
@@ -2973,3 +3015,7 @@ if __name__ == '__main__':
         srv.serve_forever()
     except KeyboardInterrupt:
         print('已停止')
+
+
+if __name__ == '__main__':
+    main()
